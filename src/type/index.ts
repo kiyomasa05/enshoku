@@ -38,4 +38,31 @@ export const experiencedCompanySchema = z.array(resumeSchema);
 
 export type ProjectList = z.infer<typeof projectListSchema>;
 export type Resume = z.infer<typeof resumeSchema>;
-export type experiencedCompany = z.infer<typeof experiencedCompanySchema>;
+export type ExperiencedCompany = z.infer<typeof experiencedCompanySchema>;
+
+export const skill = z.object({
+  kinds: z.string(), // Rubyとか
+  yearsOfExperience: z.string(),
+  description: z.string(),
+});
+
+export const skillSet = z.object({
+  language: z.array(skill),
+  FW: z.array(skill),
+  infra: z.array(skill),
+  other: z.array(skill),
+});
+
+export const outputData = z.object({
+  experience: experiencedCompanySchema,
+  skill: skillSet,
+});
+
+export const experience = z.object({
+  experience: experiencedCompanySchema,
+});
+
+export type Experience = z.infer<typeof experience>;
+export type OutputData = z.infer<typeof outputData>;
+
+export type Skill = z.infer<typeof skill>;

@@ -2,10 +2,13 @@
 
 import { redirect } from "next/navigation";
 import { parseWithZod } from "@conform-to/zod";
-import { resumeSchema } from "@/type";
+import { outputData, Resume, resumeSchema } from "@/type";
+import { useContext } from "react";
+import { ResumeFormContext } from "../provider/resumeFormProvider";
 
+// 最後の送信処理
 export async function createResume(prevState: unknown, formData: FormData) {
-  console.log("actionが呼び出されたよ")
+  console.log("actionが呼び出されたよ");
   console.log("prevState", prevState);
   console.log("formdata", formData);
   const submission = parseWithZod(formData, {
@@ -15,7 +18,30 @@ export async function createResume(prevState: unknown, formData: FormData) {
   if (submission.status !== "success") {
     return submission.reply();
   }
-  console.log(formData);
+  // フォームデータをResumeオブジェクトに変換
+  const newExperience: Resume = {
+    companyName: formData.get("companyName") as string,
+    startPeriod: formData.get("startPeriod") as string,
+    endPeriod: formData.get("endPeriod") as string,
+    companyOverview: formData.get("companyOverview") as string,
+    projectList: [
+      {
+        doneContents: [
+          formData.get("projectList[0].doneContents[0]") as string,
+        ],
+        achievements: formData.get("projectList[0].achievements") as string,
+        projectOverview: formData.get(
+          "projectList[0].projectOverview"
+        ) as string,
+        inChargeOverview: formData.get(
+          "projectList[0].inChargeOverview"
+        ) as string,
+      },
+    ],
+  };
+  // ResumeFormContextからaddExperienceを呼び出す
+  const { addExperience } = useContext(ResumeFormContext);
+  addExperience(newExperience);
 
   // redirect("/");
 }

@@ -10,6 +10,7 @@ import { useActionState } from "react";
 import { Resume, resumeSchema } from "@/type";
 import { parseWithZod } from "@conform-to/zod";
 import { createResume } from "@/app/lib/actions";
+// import { useFormContext } from "@/app/provider/resumeFormProvider";
 
 const defaultValue: Resume = {
   companyName: "",
@@ -26,7 +27,10 @@ const defaultValue: Resume = {
   ],
 };
 
+// 今のままだと会社数が追加できてない
+
 const ResumeForm = () => {
+
   // フォームアクションが呼び出された時にstateを更新
   const [lastResult, action] = useActionState(createResume, undefined);
   // ガイド:https://ja.conform.guide/api/react/useForm
@@ -49,10 +53,6 @@ const ResumeForm = () => {
 
   // console.log(projects);
   // 綺麗さは一旦おいておいて、汚いコードでつくろう
-  // console.log("project", formProjects.);
-  const { key, ...inputProps } = getInputProps(fields.endPeriod, {
-    type: "date",
-  });
 
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
@@ -230,8 +230,8 @@ const ResumeForm = () => {
         プロジェクト追加
       </button>
 
-      <button className="bg-emerald-300 p-3" type="submit">
-        送信
+      <button className="bg-emerald-300 p-3" onClick={() => console.log("aa")}>
+        登録して次へ
       </button>
     </form>
   );
