@@ -8,7 +8,9 @@ import { useActionState, useEffect, useState } from "react";
 import { createResume } from "../lib/actions";
 import { parseWithZod } from "@conform-to/zod";
 import { useRouter, useSearchParams } from "next/navigation";
+// import ResumeFormProvider from "@/app/provider/ResumeFormProvider";
 import Test from "@/components/form/newForm/Test";
+import ResumeFormProvider from "../provider/resumeFormProvider";
 
 /**
  * 設計
@@ -44,7 +46,7 @@ export default function Resume() {
     <>
       <h2>職務経歴</h2>
       <p>職務経歴を入力してください</p>
-      {ContentTSX}
+      <ResumeFormProvider>{ContentTSX}</ResumeFormProvider>
     </>
   );
 }

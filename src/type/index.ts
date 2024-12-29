@@ -32,13 +32,16 @@ export const resumeSchema = z.object({
     .array(projectListSchema)
     .min(1, "少なくとも1つのプロジェクトが必要です"), // 職務内容
 });
+
 // 会社ごと
-// フォーム上、会社ごとのデータは最初から保存するのではなく、stateにこのデータを登録していく形をとる
-export const experiencedCompanySchema = z.array(resumeSchema);
+export const experienceSchema = z.object({
+  experience: z.array(resumeSchema).min(1, "少なくとも1つの会社名が必要です"),
+});
+// export const experienceSchema = z.array(resumeSchema);
 
 export type ProjectList = z.infer<typeof projectListSchema>;
 export type Resume = z.infer<typeof resumeSchema>;
-export type ExperiencedCompany = z.infer<typeof experiencedCompanySchema>;
+export type Experience = z.infer<typeof experienceSchema>;
 
 export const skill = z.object({
   kinds: z.string(), // Rubyとか
@@ -54,15 +57,11 @@ export const skillSet = z.object({
 });
 
 export const outputData = z.object({
-  experience: experiencedCompanySchema,
+  experience: experienceSchema,
   skill: skillSet,
 });
 
-export const experience = z.object({
-  experience: experiencedCompanySchema,
-});
-
-export type Experience = z.infer<typeof experience>;
 export type OutputData = z.infer<typeof outputData>;
 
 export type Skill = z.infer<typeof skill>;
+export type Skillset = z.infer<typeof skillSet>;

@@ -21,10 +21,7 @@ const ResumeForm = ({ name, formId }: ResumeFormProps) => {
   const [meta, form] = useField(name, { formId });
   const fields = meta.getFieldList()[0]?.getFieldset();
 
-  // console.log(fields)
-  console.log(form);
-
-  // if (!fields) return null;
+  if (!fields) return null;
 
   return (
     <form {...getFormProps(form)}>
@@ -39,9 +36,7 @@ const ResumeForm = ({ name, formId }: ResumeFormProps) => {
         {...getInputProps(fields.companyName, { type: "text" })}
         key={fields.companyName.key}
       />
-      <div id={fields.companyName.errorId}>
-        {fields.companyName.errors}
-      </div>
+      <div id={fields.companyName.errorId}>{fields.companyName.errors}</div>
       <label
         htmlFor={fields.startPeriod.id}
         className="rounded-full bg-sky-500 w-40 p-3 inline-block text-center"
@@ -69,15 +64,11 @@ const ResumeForm = ({ name, formId }: ResumeFormProps) => {
       <h3>職務内容</h3>
 
       {/* 他のフィールドも同様に */}
-      
+
       {/* プロジェクトリストの処理 */}
-      {fields.projectList.getFieldList().map((project, index) => {
+      {formFields.projectList.getFieldList().map((project, index) => {
         const projectFields = project.getFieldset();
-        return (
-          <div key={project.key}>
-            {/* プロジェクトのフィールド */}
-          </div>
-        );
+        return <div key={project.key}>{/* プロジェクトのフィールド */}</div>;
       })}
     </form>
   );
