@@ -32,7 +32,7 @@ const ConformForm = () => {
                 <Button
                   className="bg-sky-600 p-3 text-right"
                   onClick={() => {
-                    router.push("/resume?step=2");
+                    router.push("/resume?step=1");
                   }}
                 >
                   編集する
@@ -96,6 +96,7 @@ const ConformForm = () => {
             )}
           </TableBody>
         </Table>
+        <Button>この内容でWordをDL</Button>
       </div>
     </>
   );
