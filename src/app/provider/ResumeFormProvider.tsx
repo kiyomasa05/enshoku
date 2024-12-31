@@ -1,6 +1,5 @@
 "use client";
 
-import { defaultExperienceValue } from "@/components/form/newForm/ResumeForm";
 import { Experience, Skillset } from "@/type";
 import { createContext, useContext, useState } from "react";
 
@@ -8,7 +7,59 @@ type ResumeFormContextType = {
   experience: Experience;
   skills: Skillset;
   setExperience: (newExperience: Experience) => void;
-  // updateSkills: (skillCategory: SkillKind, newSkills: Skill) => void;
+  setSkills: (newSkillSet: Skillset) => void;
+};
+
+export const defaultSkillSet: Skillset = {
+  language: [
+    {
+      kinds: "",
+      yearsOfExperience: "",
+      description: "",
+    },
+  ],
+  FW: [
+    {
+      kinds: "",
+      yearsOfExperience: "",
+      description: "",
+    },
+  ],
+  infra: [
+    {
+      kinds: "",
+      yearsOfExperience: "",
+      description: "",
+    },
+  ],
+  other: [
+    {
+      kinds: "",
+      yearsOfExperience: "",
+      description: "",
+    },
+  ],
+};
+
+export const defaultExperienceValue: Experience = {
+  experience: [
+    {
+      companyName: "",
+      startPeriod: "",
+      endPeriod: "",
+      companyOverview: "",
+      projectList: [
+        {
+          doneContents: [""],
+          pjStartPeriod: "",
+          pjEndPeriod: "",
+          achievements: "",
+          projectOverview: "",
+          inChargeOverview: "",
+        },
+      ],
+    },
+  ],
 };
 
 export const ResumeFormContext = createContext<ResumeFormContextType>(
@@ -26,22 +77,12 @@ export default function ResumeFormProvider({
   );
 
   // スキルセット
-  const [skills, setSkills] = useState<Skillset>({
-    language: [],
-    FW: [],
-    infra: [],
-    other: [],
-  });
-
-  // const updateSkills = (skillCategory: SkillKind, newSkills: Skill) => {
-  //   setSkills((prev) => ({
-  //     ...prev,
-  //     [skillCategory]: newSkills,
-  //   }));
-  // };
+  const [skills, setSkills] = useState<Skillset>(defaultSkillSet);
 
   return (
-    <ResumeFormContext.Provider value={{ experience, skills, setExperience }}>
+    <ResumeFormContext.Provider
+      value={{ experience, skills, setExperience, setSkills }}
+    >
       {children}
     </ResumeFormContext.Provider>
   );

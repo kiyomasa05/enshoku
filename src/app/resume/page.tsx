@@ -11,6 +11,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 // import ResumeFormProvider from "@/app/provider/ResumeFormProvider";
 import Test from "@/components/form/newForm/Test";
 import ResumeFormProvider from "../provider/resumeFormProvider";
+import SkillSetForm from "@/components/form/newForm/SkillSetForm";
+import ConformForm from "@/components/form/newForm/ConformForm";
 
 /**
  * 設計
@@ -38,15 +40,34 @@ export default function Resume() {
     const pushStep = (num: number) => router.push(`resume?step=${step + num}`);
     const goNext = () => pushStep(1);
     const backPrevious = () => pushStep(-1);
+
+    if (step === 1) {
+    } else if (step === 2) {
+    } else if (step === 3) {
+    }
   }, [step, router]);
 
-  const ContentTSX = step == 1 ? <ResumeForm /> : <></>;
+  // // const ContentTSX = step == 1 ? <ResumeForm /> : <SkillSetForm />;
+  // const ContentTSX = (() => {
+  //   switch (step) {
+  //     case 1:
+  //       return <ResumeForm />;
+  //     case 2:
+  //       return <SkillSetForm />;
+  //     case 3:
+  //       return <ConformForm />;
+  //     default:
+  //       throw new Error("URLが正しくありません。");
+  //   }
+  // })();
 
   return (
     <>
-      <h2>職務経歴</h2>
-      <p>職務経歴を入力してください</p>
-      <ResumeFormProvider>{ContentTSX}</ResumeFormProvider>
+      <ResumeFormProvider>
+        {step === 1 && <ResumeForm />}
+        {step === 2 && <SkillSetForm />}
+        {step === 3 && <ConformForm />}
+      </ResumeFormProvider>
     </>
   );
 }
