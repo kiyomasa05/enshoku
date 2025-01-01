@@ -11,11 +11,14 @@ import {
 } from "@/components/ui/table";
 import { useResumeFormContext } from "@/app/provider/resumeFormProvider";
 import { useRouter } from "next/navigation";
+import { downloadWord } from "@/app/lib/downloadWord";
 
 const ConformForm = () => {
   const { experience, skills } = useResumeFormContext();
   const router = useRouter();
   // const resume = experience.experience
+
+ 
 
   return (
     <>
@@ -40,10 +43,8 @@ const ConformForm = () => {
               </TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
-            {/* {resume.map(()=>{return (null)})} */}
-          </TableBody>
-          </Table>
+          <TableBody>{/* {resume.map(()=>{return (null)})} */}</TableBody>
+        </Table>
         <h2>テクニカルスキル</h2>
         <Table>
           <TableHeader>
@@ -65,9 +66,8 @@ const ConformForm = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-           
-            {skills && Object.entries(skills).map(
-              ([category, skillList]) => {
+            {skills &&
+              Object.entries(skills).map(([category, skillList]) => {
                 if (skillList.length > 0) {
                   return skillList.map((skill, index) => (
                     <TableRow key={`${category}-${index}`}>
@@ -92,11 +92,12 @@ const ConformForm = () => {
                     </TableRow>
                   );
                 }
-              }
-            )}
+              })}
           </TableBody>
         </Table>
-        <Button>この内容でWordをDL</Button>
+        <Button onClick={() => downloadWord(skills, experience)}>
+          この内容でWordをDL
+        </Button>
       </div>
     </>
   );
