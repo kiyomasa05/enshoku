@@ -10,6 +10,7 @@ import {
 } from "docx";
 import { Experience, Skillset } from "@/type";
 import { createSkillDocx } from "./createSkillDocx";
+import { createExperienceDocx } from "./createExperienceDocx";
 
 export const downloadWord = async (
   skills: Skillset,
@@ -20,23 +21,24 @@ export const downloadWord = async (
     return;
   }
   const skillTable = createSkillDocx(skills);
+  const experienceContents = createExperienceDocx(experience);
 
   // ドキュメントを作成
   const doc = new Document({
     title: "職務経歴書",
     styles: {
-      paragraphStyles: [
-        {
-          id: "Normal",
-          name: "Normal",
-          basedOn: "Normal",
-          next: "Normal",
-          quickFormat: true,
+      default: {
+        document: {
           run: {
+            size: "11pt",
             font: "MS Gothic",
           },
+          paragraph: {
+            alignment: AlignmentType.LEFT,
+          },
         },
-      ],
+      },
+      paragraphStyles: [],
     },
     sections: [
       {
@@ -54,12 +56,14 @@ export const downloadWord = async (
         children: [
           new Paragraph({
             children: [new TextRun("職務経歴書")],
-            heading: HeadingLevel.TITLE,
+            heading: "Heading2",
             alignment: AlignmentType.CENTER,
           }),
+          ...experienceContents.map((content) => content),
           new Paragraph({
             children: [new TextRun("テクニカルスキル")],
             heading: "Heading2", // タイトル
+            alignment: AlignmentType.CENTER,
           }),
           skillTable, // スキル
           new Paragraph(""),

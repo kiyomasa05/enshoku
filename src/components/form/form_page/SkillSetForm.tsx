@@ -15,7 +15,7 @@ import { skillSet, Skillset } from "@/type";
 import { parseWithZod } from "@conform-to/zod";
 import { useResumeFormContext } from "@/app/provider/resumeFormProvider";
 import { useRouter } from "next/navigation";
-import TextInputForm from "../TextInputForm";
+import TextInputForm from "../form_parts/TextInputForm";
 
 
 /**
@@ -104,7 +104,7 @@ const SkillSetForm = () => {
             <TableHeader>
               <TableRow className="border-b border-gray-400 border-solid">
                 <TableHead className="text-center">No.</TableHead>
-                <TableHead>言語</TableHead>
+                <TableHead className="w-80">言語</TableHead>
                 <TableHead>経験年数</TableHead>
                 <TableHead>備考、説明</TableHead>
                 <TableHead></TableHead>
@@ -187,7 +187,7 @@ const SkillSetForm = () => {
             <TableHeader>
               <TableRow className="border-b border-gray-400 border-solid">
                 <TableHead className="text-center">No.</TableHead>
-                <TableHead>フレームワーク</TableHead>
+                <TableHead className="w-80">フレームワーク</TableHead>
                 <TableHead>経験年数</TableHead>
                 <TableHead>備考、説明</TableHead>
                 <TableHead></TableHead>
@@ -265,7 +265,7 @@ const SkillSetForm = () => {
             <TableHeader>
               <TableRow className="border-b border-gray-400 border-solid">
                 <TableHead className="text-center">No.</TableHead>
-                <TableHead>インフラ系スキル</TableHead>
+                <TableHead className="w-80">インフラ系スキル</TableHead>
                 <TableHead>経験年数</TableHead>
                 <TableHead>備考、説明</TableHead>
                 <TableHead></TableHead>
@@ -345,7 +345,7 @@ const SkillSetForm = () => {
             <TableHeader>
               <TableRow className="border-b border-gray-400 border-solid">
                 <TableHead className="text-center">No.</TableHead>
-                <TableHead>その他スキル</TableHead>
+                <TableHead className="w-80">その他スキル</TableHead>
                 <TableHead>経験年数</TableHead>
                 <TableHead>備考、説明</TableHead>
                 <TableHead></TableHead>
@@ -417,9 +417,11 @@ const SkillSetForm = () => {
             </TableBody>
           </Table>
 
-          <Button className="bg-emerald-600 p-3" type="submit">
-            登録して次へ
-          </Button>
+          <div className="m-3 flex justify-end">
+            <Button className="bg-emerald-600 p-3" type="submit">
+              登録して次へ
+            </Button>
+          </div>
         </form>
       </div>
     </>

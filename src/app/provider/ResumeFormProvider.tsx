@@ -50,12 +50,42 @@ export const defaultExperienceValue: Experience = {
       companyOverview: "",
       projectList: [
         {
-          doneContents: [""],
+          projectOverview: "",
           pjStartPeriod: "",
           pjEndPeriod: "",
-          achievements: "",
+          inChargeProcess: "",
+          doneContents: [""],
+          achievements: [""],
+          environment: [
+            {
+              category: "",
+              items: ["", ""],
+            },
+          ],
+          scale: { participantsNumber: 0, role: "" },
+        },
+      ],
+    },
+    {
+      companyName: "",
+      startPeriod: "",
+      endPeriod: "",
+      companyOverview: "",
+      projectList: [
+        {
           projectOverview: "",
-          inChargeOverview: "",
+          pjStartPeriod: "",
+          pjEndPeriod: "",
+          inChargeProcess: "",
+          doneContents: [""],
+          achievements: [""],
+          environment: [
+            {
+              category: "",
+              items: ["", ""],
+            },
+          ],
+          scale: { participantsNumber: 0, role: "" },
         },
       ],
     },

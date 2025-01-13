@@ -1,18 +1,11 @@
 "use client";
 
-// import NewResumeForm from "@/components/form/newForm/NewResumeForm";
-import ResumeForm from "@/components/form/newForm/ResumeForm";
-import { outputData, OutputData } from "@/type";
-import { FormProvider, useForm } from "@conform-to/react";
-import { useActionState, useEffect, useState } from "react";
-import { createResume } from "../lib/actions";
-import { parseWithZod } from "@conform-to/zod";
+import ResumeForm from "@/components/form/form_page/ResumeForm";
+import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-// import ResumeFormProvider from "@/app/provider/ResumeFormProvider";
-import Test from "@/components/form/newForm/Test";
 import ResumeFormProvider from "../provider/resumeFormProvider";
-import SkillSetForm from "@/components/form/newForm/SkillSetForm";
-import ConformForm from "@/components/form/newForm/ConformForm";
+import SkillSetForm from "@/components/form/form_page/SkillSetForm";
+import ConformForm from "@/components/form/form_page/ConformForm";
 
 /**
  * 設計

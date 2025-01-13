@@ -8,6 +8,7 @@ import {
   VerticalMergeType,
 } from "docx";
 import { Skillset } from "@/type";
+import { translateSkillCate } from "./utils/translateSkillCate";
 
 /**
  * skillからdocxのテーブルを作成し返す
@@ -66,7 +67,10 @@ export const createSkillDocx = (skills: Skillset): Table => {
           new TableRow({
             children: [
               new TableCell({
-                children: index === 0 ? [new Paragraph(category)] : [], // 最初の行だけカテゴリを表示
+                children:
+                  index === 0
+                    ? [new Paragraph(translateSkillCate(category))]
+                    : [], // 最初の行だけカテゴリを表示
                 verticalMerge:
                   index === 0
                     ? VerticalMergeType.RESTART

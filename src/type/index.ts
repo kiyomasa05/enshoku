@@ -22,19 +22,37 @@ export const projectListSchema = z.object({
     })
     .refine((value) => !Number.isNaN(new Date(value).getMonth())),
   pjEndPeriod: z
-    .string({ required_error: "プロジェクト参加終了日は必須です" })
+    .string({ required_error: "プロジェクト参加終了月は必須です" })
     .refine((value) => !Number.isNaN(new Date(value).getMonth())),
-  inChargeOverview: z.string({ required_error: "担当工程概要は必須です" }),
+  inChargeProcess: z.string({ required_error: "担当工程は必須です" }), //担当工程
   doneContents: z
-    .array(z.string({ required_error: "担当詳細を入力してください" }))
+    .array(z.string({ required_error: "担当詳細を入力するか削除してください" }))
     .min(1, { message: "少なくとも1つの担当詳細が必要です" }), // 担当詳細
-  achievements: z.string({ required_error: "実績は必須です" }),
+  achievements: z
+    .array(z.string({ required_error: "実績は必須です" }))
+    .min(1, { message: "実績・工夫点は少なくとも1つは必須です。" }),
+  environment: z.array(
+    z.object({
+      category: z.string({ required_error: "カテゴリ名は必須です。" }),
+      items: z
+        .array(z.string({ required_error: "項目は必須です。" }))
+        .min(1, { message: "カテゴリ内のリストは最低1つ必要です。" }),
+    })
+  ),
+  scale: z.object({
+    participantsNumber: z.number({ required_error: "参加人数は必須です" }),
+    role: z.string({ required_error: "役割は必須です" }),
+  }),
 });
 // 職務経歴
 export const resumeSchema = z.object({
   companyName: z.string({ required_error: "会社名は必須です。" }),
-  startPeriod: z.string({ required_error: "開始月は必須です" }).refine((value) => !Number.isNaN(new Date(value).getMonth())),
-  endPeriod: z.string({ required_error: "終了月は必須です" }).refine((value) => !Number.isNaN(new Date(value).getMonth())),
+  startPeriod: z
+    .string({ required_error: "開始月は必須です" })
+    .refine((value) => !Number.isNaN(new Date(value).getMonth())),
+  endPeriod: z
+    .string({ required_error: "終了月は必須です" })
+    .refine((value) => !Number.isNaN(new Date(value).getMonth())),
   companyOverview: z.string({ required_error: "会社概要は必須です" }),
   projectList: z
     .array(projectListSchema)
