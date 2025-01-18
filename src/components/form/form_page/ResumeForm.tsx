@@ -9,8 +9,8 @@ import {
 import { useActionState } from "react";
 import { Experience, experienceSchema } from "@/type";
 import { parseWithZod } from "@conform-to/zod";
-import { useResumeFormContext } from "@/app/provider/resumeFormProvider";
-import { redirect, useRouter } from "next/navigation";
+import { useResumeFormContext } from "@/app/provider/ResumeFormProvider";
+import { useRouter } from "next/navigation";
 import {
   Table,
   TableBody,
@@ -19,25 +19,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import ResumeFormSample from "../form_parts/ResumeFormSample";
+import { ResumeFormSample } from "../form_parts/Sample";
 import { Button } from "@/components/ui/button";
 
-// TODO:projectの期間の入力
-
 const ResumeForm = () => {
-  // const context = useResumeFormContext();
-  // console.log("Full context:", context); // コンテキスト全体をログ出力
   const router = useRouter();
 
   const { setExperience, experience } = useResumeFormContext();
   // action
   const createResume = async (prevState: unknown, formData: FormData) => {
-    console.log("actionが呼び出されたよ");
-    // FormDataの全エントリーを出力
-    // console.log("\nRaw FormData entries:");
-    // for (const [key, value] of formData.entries()) {
-    //   console.log(`${key}: ${value}`);
-    // }
     const submission = parseWithZod(formData, {
       schema: experienceSchema,
     });
@@ -45,6 +35,7 @@ const ResumeForm = () => {
     if (submission.status === "success") {
       // 期待する形式にデータを整形
       const formattedData: Experience = {
+        summary: submission.value.summary,
         experience: submission.value.experience.map((exp) => ({
           companyName: exp.companyName,
           startPeriod: exp.startPeriod,
@@ -94,6 +85,17 @@ const ResumeForm = () => {
       <p className="mt-4 text-lg">職務経歴を入力してください</p>
       <ResumeFormSample />
       <form action={action} {...getFormProps(form)}>
+        <label
+          htmlFor={fields.summary.id}
+          className="rounded-md bg-sky-500 w-40 p-1 h-8 text-center block"
+        >
+          職務要約
+        </label>
+        <textarea
+          className="rounded-md p-1 border-sky-400 border-solid border w-full h-24"
+          {...getTextareaProps(fields.summary)}
+          key={fields.summary.key}
+        ></textarea>
         {/* 経験会社ごとに繰り返し */}
         {experiences.map((experience, eIndex) => {
           const experienceFields = experience.getFieldset();

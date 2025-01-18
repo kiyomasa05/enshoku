@@ -14,7 +14,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-const ResumeFormSample = () => {
+export const ResumeFormSample = () => {
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1">
@@ -22,6 +22,15 @@ const ResumeFormSample = () => {
           入力例を表示
         </AccordionTrigger>
         <AccordionContent>
+          <div className="text-gray-500 mb-3">
+            <h2 className="font-bold">職務要約</h2>
+            <p>
+              新卒でxxxxxxxxxへ入社。3年代理店営業を行い、電子契約のシステム開発を会社役員に進言し、5年ほどシステム開発の上流工程を経験。
+            </p>
+            <p>
+              直近１年でフルスタックエンジニアとして、Ｗｅｂアプリ開発（フロント・バックエンド）、インフラ運用等業務を経験
+            </p>
+          </div>
           <Table className="text-gray-500 border-solid border border-gray-400">
             <TableHeader>
               <TableRow className="border-b border-gray-400 border-solid">
@@ -53,7 +62,7 @@ const ResumeFormSample = () => {
                   </div>
                 </TableCell>
                 <TableCell className="border-solid border-r border-gray-400">
-                  <div >
+                  <div>
                     <p>[プロジェクト概要]</p>
                     <p className="pl-3">
                       自社サービスxxxxxxのシステム改修、運用
@@ -115,4 +124,29 @@ const ResumeFormSample = () => {
   );
 };
 
-export default ResumeFormSample;
+export const SelfPromotionSample = () => {
+  return (
+    <>
+      <Accordion type="single" collapsible>
+        <AccordionItem value="item-2">
+          <AccordionTrigger className="text-lg text-sky-800 font-bold">
+            入力例を表示
+          </AccordionTrigger>
+          <AccordionContent className="text-gray-500">
+            <h2>自己PR</h2>
+            <p>
+              【伝える力、要約力】
+              相手の立場になって考え、図解や解説などで理解しやすく伝えるのが得意です。伝えたいことを絞って要約して伝えることも得意で、上流工程や会議などで円滑にコミュニケーションをとって進めることができます。
+            </p>
+            <p>
+              【調べる力】
+              エンジニアとしての経験は未熟ですが、調べて実装や手順の作成などが可能です。
+              知識がない領域でも全体感をとらえてから、知りたい部分の調査をするよう意識し、業務を行ってきました。
+              未経験ながら１年業務ができたのは、周りのおかげと調べる力があるためと考えてます。
+            </p>
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
+    </>
+  );
+};

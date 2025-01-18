@@ -3,9 +3,10 @@
 import ResumeForm from "@/components/form/form_page/ResumeForm";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import ResumeFormProvider from "../provider/resumeFormProvider";
+import ResumeFormProvider from "../provider/ResumeFormProvider";
 import SkillSetForm from "@/components/form/form_page/SkillSetForm";
 import ConformForm from "@/components/form/form_page/ConformForm";
+import OtherDataForm from "@/components/form/form_page/OtherDataForm";
 
 /**
  * 設計
@@ -59,7 +60,8 @@ export default function Resume() {
       <ResumeFormProvider>
         {step === 1 && <ResumeForm />}
         {step === 2 && <SkillSetForm />}
-        {step === 3 && <ConformForm />}
+        {step === 3 && <OtherDataForm />}
+        {step === 4 && <ConformForm />}
       </ResumeFormProvider>
     </>
   );

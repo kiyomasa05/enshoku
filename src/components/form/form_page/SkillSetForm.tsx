@@ -13,7 +13,7 @@ import {
 import { useActionState, useEffect } from "react";
 import { skillSet, Skillset } from "@/type";
 import { parseWithZod } from "@conform-to/zod";
-import { useResumeFormContext } from "@/app/provider/resumeFormProvider";
+import { useResumeFormContext } from "@/app/provider/ResumeFormProvider";
 import { useRouter } from "next/navigation";
 import TextInputForm from "../form_parts/TextInputForm";
 
@@ -30,8 +30,6 @@ const SkillSetForm = () => {
 
   // action
   const createSkills = async (prevState: unknown, formData: FormData) => {
-    console.log("actionが呼び出されたよ");
-
     const submission = parseWithZod(formData, {
       schema: skillSet,
     });

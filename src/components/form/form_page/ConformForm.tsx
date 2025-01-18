@@ -9,14 +9,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useResumeFormContext } from "@/app/provider/resumeFormProvider";
+import { useResumeFormContext } from "@/app/provider/ResumeFormProvider";
 import { useRouter } from "next/navigation";
 import { downloadWord } from "@/app/lib/downloadWord";
 import { calculatePeriod, formatDate } from "@/app/lib/utils/formatDate";
 import { translateSkillCate } from "@/app/lib/utils/translateSkillCate";
+import React from "react";
 
 const ConformForm = () => {
-  const { experience, skills } = useResumeFormContext();
+  const { experience, skills, otherData } = useResumeFormContext();
   const router = useRouter();
   // const resume = experience.experience
 
@@ -31,7 +32,9 @@ const ConformForm = () => {
           この内容で出力します。ご確認ください
         </h1>
         <div className="relative mt-10">
-          <h2 className="text-center text-xl mb-3">職務経歴</h2>
+          <h2 className="text-center text-xl mb-3 border-b border-gray-400 border-solid pb-4">
+            職務経歴
+          </h2>
           <Button
             className="bg-sky-600 p-3 text-right absolute top-0 right-0"
             onClick={() => {
@@ -161,10 +164,11 @@ const ConformForm = () => {
         })}
         <div className="mt-5">
           <div className="relative">
-            <h2 className="text-center text-xl mb-3">テクニカルスキル</h2>
+            <h2 className="text-center text-xl mb-3 border-b border-gray-400 border-solid pb-4">
+              テクニカルスキル
+            </h2>
             <Button
               className="bg-sky-600 p-3 text-right absolute top-0 right-0"
-              // className="bg-sky-600 p-3 text-right block"
               onClick={() => {
                 router.push("/resume?step=2");
               }}
@@ -211,6 +215,91 @@ const ConformForm = () => {
                     );
                   }
                 })}
+            </TableBody>
+          </Table>
+        </div>
+
+        <div className="mt-5">
+          <div className="relative">
+            <h2 className="text-center text-xl mb-3 border-b border-gray-400 border-solid pb-4">
+              その他
+            </h2>
+            <Button
+              className="bg-sky-600 p-3 text-right absolute top-0 right-0"
+              onClick={() => {
+                router.push("/resume?step=3");
+              }}
+            >
+              編集する
+            </Button>
+          </div>
+          <Table className="w-5/6 mx-auto">
+            <TableHeader>
+              <TableRow className="border-b border-gray-400 border-solid">
+                <TableHead className="min-w-10"></TableHead>
+                <TableHead>内容</TableHead>
+                <TableHead></TableHead>
+                <TableHead></TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow className="border-b border-gray-400 border-solid">
+                <TableHead>自己PR</TableHead>
+                <TableCell>{otherData.selfPromotion}</TableCell>
+              </TableRow>
+              <TableRow className="border-b border-gray-400 border-solid">
+                <TableHead>資格</TableHead>
+                <TableCell>
+                  {otherData.qualification ? (
+                    <ul>
+                      {otherData.qualification.map((shikaku, index) => {
+                        return (
+                          <li key={shikaku} className="list-square">
+                            {shikaku}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  ) : (
+                    <p>資格の登録はありません。</p>
+                  )}
+                </TableCell>
+              </TableRow>
+              <TableRow className="border-b border-gray-400 border-solid">
+                <TableHead>ポートフォリオ</TableHead>
+                <TableCell>
+                  {otherData.portfolios ? (
+                    <Table>
+                      <TableBody>
+                        {/* sabTable */}
+                        {otherData.portfolios.map((portfolio, pIndex) => {
+                          return (
+                            <React.Fragment key={pIndex}>
+                              <TableRow>
+                                <TableHead rowSpan={3}>
+                                  No.{pIndex + 1}
+                                </TableHead>
+                                <TableCell>タイトル</TableCell>
+                                <TableCell>{portfolio.title}</TableCell>
+                              </TableRow>
+                              <TableRow>
+                                <TableCell>url</TableCell>
+                                <TableCell>{portfolio.url}</TableCell>
+                              </TableRow>
+                              <TableRow className="border-b border-gray-400 border-solid">
+                                <TableCell>説明</TableCell>
+                                <TableCell>{portfolio.explanation}</TableCell>
+                              </TableRow>
+                            </React.Fragment>
+                          );
+                        })}
+                      </TableBody>
+                    </Table>
+                  ) : (
+                    <p>ポートフォリオの登録はありません。</p>
+                  )}
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </div>

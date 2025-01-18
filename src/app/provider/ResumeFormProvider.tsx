@@ -1,13 +1,15 @@
 "use client";
 
-import { Experience, Skillset } from "@/type";
+import { Experience, OtherData, Skillset } from "@/type";
 import { createContext, useContext, useState } from "react";
 
 type ResumeFormContextType = {
   experience: Experience;
   skills: Skillset;
+  otherData: OtherData;
   setExperience: (newExperience: Experience) => void;
   setSkills: (newSkillSet: Skillset) => void;
+  setOtherData: (otherData: OtherData) => void;
 };
 
 export const defaultSkillSet: Skillset = {
@@ -42,6 +44,7 @@ export const defaultSkillSet: Skillset = {
 };
 
 export const defaultExperienceValue: Experience = {
+  summary: "",
   experience: [
     {
       companyName: "",
@@ -92,6 +95,12 @@ export const defaultExperienceValue: Experience = {
   ],
 };
 
+export const defaultOtherData: OtherData = {
+  selfPromotion: "",
+  qualification: [""],
+  portfolios: [{ title: "", url: "", explanation: "" }],
+};
+
 export const ResumeFormContext = createContext<ResumeFormContextType>(
   {} as ResumeFormContextType
 );
@@ -109,9 +118,19 @@ export default function ResumeFormProvider({
   // スキルセット
   const [skills, setSkills] = useState<Skillset>(defaultSkillSet);
 
+  // その他
+  const [otherData, setOtherData] = useState<OtherData>(defaultOtherData);
+
   return (
     <ResumeFormContext.Provider
-      value={{ experience, skills, setExperience, setSkills }}
+      value={{
+        experience,
+        skills,
+        otherData,
+        setExperience,
+        setSkills,
+        setOtherData,
+      }}
     >
       {children}
     </ResumeFormContext.Provider>

@@ -104,12 +104,32 @@ const createExperienceTableRow = (project: ProjectList) => {
 export const createExperienceDocx = (experience: Experience): DocxContent[] => {
   const contents: DocxContent[] = [];
 
+  // 職務要約
+  contents.push(
+    new Paragraph({
+      children: [new TextRun({ text: "◼︎職務要約", bold: true })],
+    })
+  );
+
+  contents.push(
+    new Paragraph({
+      text: experience.summary,
+      spacing: { after: 100 },
+    })
+  );
+
   experience.experience.forEach((company) => {
     // 会社情報
     contents.push(
       new Paragraph({
+        children: [new TextRun({ text: "会社名", bold: true })],
+      }),
+      new Paragraph({
         children: [new TextRun({ text: company.companyName, bold: true })],
-        // heading: HeadingLevel.HEADING_2,
+      }),
+
+      new Paragraph({
+        children: [new TextRun({ text: "会社概要", bold: true })],
       }),
       new Paragraph(company.companyOverview)
     );

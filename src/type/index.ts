@@ -61,6 +61,7 @@ export const resumeSchema = z.object({
 
 // 会社ごと
 export const experienceSchema = z.object({
+  summary: z.string({ required_error: "職務要約は必須です。" }),
   experience: z
     .array(resumeSchema)
     .min(1, { message: "少なくとも1つの会社名が必要です" }),
@@ -102,3 +103,48 @@ export type OutputData = z.infer<typeof outputData>;
 
 export type Skill = z.infer<typeof skillDetails>;
 export type Skillset = z.infer<typeof skillSet>;
+
+export const signinSchema = z
+  .object({
+    username: z
+      .string({ required_error: "ユーザー名は必須です。" })
+      .max(20, "ユーザー名は20文字以内にしてください。"),
+    email: z
+      .string({ required_error: "emailは必須です。" })
+      .email("無効なEmailアドレスです。"),
+    password: z
+      .string({ required_error: "パスワードは必須です。" })
+      .min(8, "パスワードは8文字以上にしてください。")
+      .max(20, "パスワードは20文字以内にしてください。"),
+    passwordConfirmation: z.string({
+      required_error: "パスワード確認は必須です。",
+    }),
+  })
+  .refine((data) => data.password === data.passwordConfirmation, {
+    message: "パスワードが一致しません。",
+    path: ["passwordConfirmation"], // エラーメッセージを表示するフィールド
+  });
+
+export const otherDataSchema = z.object({
+  // 自己PR
+  selfPromotion: z.string({
+    required_error: "自己PRは必須です。",
+  }),
+  // 取得資格
+  qualification: z.array(z.string()).nullable(),
+  // portfolio
+  portfolios: z
+    .object({
+      title: z.string({
+        required_error: "ポートフォリオのタイトルは必須です。",
+      }),
+      url: z.string({ required_error: "ポートフォリオのURLは必須です。" }),
+      explanation: z.string({
+        required_error: "ポートフォリオの説明は必須です。",
+      }),
+    })
+    .array()
+    .nullable(),
+});
+
+export type OtherData = z.infer<typeof otherDataSchema>;

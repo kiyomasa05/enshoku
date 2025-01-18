@@ -23,13 +23,15 @@ export default function Home() {
             <Link href={"/resume"}>職務経歴書を作成する</Link>
           </button>
         </div>
+        <p className="pl-4 pt-2">※スマホからの入力は対応してません。</p>
+        {/* 説明文 */}
       </div>
-      topページ 会員登録すると、作成途中のデータを利用できます。
-      <Link href={"/resume"}>会員登録して作成</Link>
-      <button className="mt-20 bg-sky-200 text-sky-700 border-2 border-transparent font-medium text-3xl py-3 px-9 rounded-full hover:bg-white hover:border-black duration-300">
+      {/* topページ 会員登録すると、作成途中のデータを利用できます。
+      <Link href={"/resume"}>会員登録して作成</Link> */}
+      {/* <button className="mt-20 bg-sky-200 text-sky-700 border-2 border-transparent font-medium text-3xl py-3 px-9 rounded-full hover:bg-white hover:border-black duration-300">
         <Link href={"/resume"}>会員登録なしで利用</Link>
-      </button>
-      <p>スマホからの入力は対応してません。</p>
+      </button> */}
+
     </>
   );
 }
