@@ -15,25 +15,30 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import { OtherData, otherDataSchema } from "@/type";
 import { parseWithZod } from "@conform-to/zod";
 import { useResumeFormContext } from "@/app/provider/ResumeFormProvider";
 import { useRouter } from "next/navigation";
 import TextInputForm from "../form_parts/TextInputForm";
 import { SelfPromotionSample } from "../form_parts/Sample";
+import { useNavigationGuard } from "next-navigation-guard";
 
-/**
- * 表形式、一個も入力しなくても進める
- *
- */
-const OtherDataForm = () => {
-  const router = useRouter();
+
+type Params = {
+  // step: number;
+  onNext: () => void;
+  // validateStep: (beforeStep: number, currentStep: number) => true | void;
+};
+const OtherDataForm = ({ onNext }: Params) => {
+  // const router = useRouter();
 
   const { otherData, setOtherData } = useResumeFormContext();
+  const [isNaviGuard, setIsNaviGuard] = useState(true);
 
   // action
-  const createOtherData = async (prevState: unknown, formData: FormData) => {
+  const createOtherData = (prevState: unknown, formData: FormData) => {
+    setIsNaviGuard(false);
     const submission = parseWithZod(formData, {
       schema: otherDataSchema,
     });
@@ -46,9 +51,13 @@ const OtherDataForm = () => {
       };
 
       setOtherData(formattedData);
-      router.push("/resume?step=4");
+
+      onNext();
     }
 
+    if (submission.status === "error") {
+      setIsNaviGuard(true);
+    }
     return submission.reply();
   };
 
@@ -65,6 +74,12 @@ const OtherDataForm = () => {
     // blurイベント発生時にフォームを検証する
     shouldValidate: "onBlur",
     shouldRevalidate: "onInput",
+  });
+
+  useNavigationGuard({
+    enabled: isNaviGuard,
+    confirm: () =>
+      window.confirm("編集中のものは保存されませんが、よろしいですか？"),
   });
 
   const qualificationFields = fields.qualification.getFieldList();
@@ -199,7 +214,13 @@ const OtherDataForm = () => {
             ポートフォリオを追加
           </Button>
           <div className="m-3 flex justify-end">
-            <Button className="bg-emerald-600 p-3" type="submit">
+            <Button
+              className="bg-emerald-600 p-3"
+              type="submit"
+              onClick={() => {
+                setIsNaviGuard(false); //強制的にnaviガードを外す
+              }}
+            >
               登録して次へ
             </Button>
           </div>

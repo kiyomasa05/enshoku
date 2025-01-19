@@ -14,53 +14,47 @@ import OtherDataForm from "@/components/form/form_page/OtherDataForm";
  * stepというクエリパラメータでexperienceとskillのページを分ける
  */
 
-// 経歴書作成ペー��
 // stepのクエリパラメータで入力を細かく制御
 export default function Resume() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [step, setStep] = useState(1);
 
-  // stepの更新をuseEffect内に移動
   useEffect(() => {
     const newStep = Number(searchParams.get("step")) || 1;
-    if (step !== newStep) {
+
+    // stepが1, 2, 3, 4以外の場合、強制的にstep=1に戻す
+    if (![1, 2, 3, 4].includes(newStep)) {
+      router.push("/resume?step=1");
+    } else if (step !== newStep) {
       setStep(newStep);
     }
-  }, [searchParams, step]);
+  }, [searchParams, step, router]);
 
-  // 直接URLでページ遷移させないための挙動を描く予定
-  useEffect(() => {
-    const pushStep = (num: number) => router.push(`resume?step=${step + num}`);
-    const goNext = () => pushStep(1);
-    const backPrevious = () => pushStep(-1);
-
+  // 各フォームに遷移する際にstepを次に進める
+  const handleNextStep = () => {
+    // 次のstepへ進む処理
     if (step === 1) {
+      setStep(2);
+      router.push("/resume?step=2");
     } else if (step === 2) {
+      setStep(3);
+      router.push("/resume?step=3");
     } else if (step === 3) {
+      setStep(4);
+      router.push("/resume?step=4");
     }
-  }, [step, router]);
-
-  // // const ContentTSX = step == 1 ? <ResumeForm /> : <SkillSetForm />;
-  // const ContentTSX = (() => {
-  //   switch (step) {
-  //     case 1:
-  //       return <ResumeForm />;
-  //     case 2:
-  //       return <SkillSetForm />;
-  //     case 3:
-  //       return <ConformForm />;
-  //     default:
-  //       throw new Error("URLが正しくありません。");
-  //   }
-  // })();
+  };
+  const validateStep = (beforeStep: number, currentStep: number) =>
+    currentStep - 1 === beforeStep ? true : router.push("/resume?step=1");
 
   return (
     <>
       <ResumeFormProvider>
-        {step === 1 && <ResumeForm />}
-        {step === 2 && <SkillSetForm />}
-        {step === 3 && <OtherDataForm />}
+        {step === 1 && <ResumeForm onNext={handleNextStep} />}
+        {step === 2 && <SkillSetForm onNext={handleNextStep} />}
+        {step === 3 && <OtherDataForm onNext={handleNextStep} />}
+
         {step === 4 && <ConformForm />}
       </ResumeFormProvider>
     </>

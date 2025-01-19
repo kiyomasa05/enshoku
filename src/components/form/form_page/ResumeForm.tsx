@@ -6,7 +6,7 @@ import {
   getTextareaProps,
   useForm,
 } from "@conform-to/react";
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { Experience, experienceSchema } from "@/type";
 import { parseWithZod } from "@conform-to/zod";
 import { useResumeFormContext } from "@/app/provider/ResumeFormProvider";
@@ -21,9 +21,17 @@ import {
 } from "@/components/ui/table";
 import { ResumeFormSample } from "../form_parts/Sample";
 import { Button } from "@/components/ui/button";
+import { useNavigationGuard } from "next-navigation-guard";
 
-const ResumeForm = () => {
-  const router = useRouter();
+type Params = {
+  // step: number;
+  onNext: () => void;
+  // validateStep: (beforeStep: number, currentStep: number) => true | void;
+};
+const ResumeForm = ({ onNext }: Params) => {
+  // const router = useRouter();
+  // validateStep(1, step);
+  const [isNaviGuard, setIsNaviGuard] = useState(true);
 
   const { setExperience, experience } = useResumeFormContext();
   // action
@@ -54,7 +62,9 @@ const ResumeForm = () => {
         })),
       };
       setExperience(formattedData);
-      router.push("/resume?step=2");
+      setIsNaviGuard(false);
+      onNext();
+      // router.push("/resume?step=2");
     }
 
     return submission.reply();
@@ -72,6 +82,11 @@ const ResumeForm = () => {
     },
     // blurイベント発生時にフォームを検証する
     shouldValidate: "onBlur",
+  });
+  useNavigationGuard({
+    enabled: isNaviGuard,
+    confirm: () =>
+      window.confirm("編集中のものは保存されませんが、よろしいですか？"),
   });
 
   const experiences = fields.experience.getFieldList();
@@ -683,7 +698,13 @@ const ResumeForm = () => {
           </Button>
         </div>
         <div className="mt-5 flex justify-end">
-          <Button className="bg-emerald-600 p-3" type="submit">
+          <Button
+            className="bg-emerald-600 p-3"
+            type="submit"
+            onClick={() => {
+              setIsNaviGuard(false); //強制的にnaviガードを外す
+            }}
+          >
             登録して次へ
           </Button>
         </div>

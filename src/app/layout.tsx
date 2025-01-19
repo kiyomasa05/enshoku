@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Noto_Sans_JP } from "next/font/google";
+import { NavigationGuardProvider } from "next-navigation-guard";
+import Header from "@/components/ui/Header";
 
 // https://zenn.dev/takna/articles/next-tailwind-googlefonts-basic
 const notoSansJP = Noto_Sans_JP({
@@ -25,7 +27,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className={`${notoSansJP.variable}`}>
-      <body>{children}</body>
+      <body>
+        <NavigationGuardProvider>
+          <Header />
+          {children}
+        </NavigationGuardProvider>
+      </body>
     </html>
   );
 }

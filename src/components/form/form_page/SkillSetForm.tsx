@@ -10,23 +10,23 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { skillSet, Skillset } from "@/type";
 import { parseWithZod } from "@conform-to/zod";
 import { useResumeFormContext } from "@/app/provider/ResumeFormProvider";
 import { useRouter } from "next/navigation";
 import TextInputForm from "../form_parts/TextInputForm";
+import { useNavigationGuard } from "next-navigation-guard";
 
+type Params = {
+  // step: number;
+  onNext: () => void;
+  // validateStep: (beforeStep: number, currentStep: number) => true | void;
+};
 
-/**
- * 表形式、一個も入力しなくても進める
- * TODO:
- *
- */
-const SkillSetForm = () => {
-  const router = useRouter();
-
+const SkillSetForm = ({ onNext }: Params) => {
   const { setSkills, skills } = useResumeFormContext();
+  const [isNaviGuard, setIsNaviGuard] = useState(true);
 
   // action
   const createSkills = async (prevState: unknown, formData: FormData) => {
@@ -59,7 +59,9 @@ const SkillSetForm = () => {
       };
 
       setSkills(formattedData);
-      router.push("/resume?step=3");
+      setIsNaviGuard(false);
+      onNext();
+      // router.push("/resume?step=3");
     }
 
     return submission.reply();
@@ -67,7 +69,7 @@ const SkillSetForm = () => {
 
   // フォームアクションが呼び出された時にstateを更新
   const [lastResult, action] = useActionState(createSkills, undefined);
-  
+
   // useEffect(() => {
   //   if (lastResult && lastResult.status === "success") {
   //     router.push("/resume?step=3");
@@ -76,7 +78,7 @@ const SkillSetForm = () => {
 
   const [form, fields] = useForm({
     lastResult, // 前回の送信結果を同期
-    defaultValue: skills,//編集時のstateを反映
+    defaultValue: skills, //編集時のstateを反映
     onValidate({ formData }) {
       // クライアントでバリデーション・ロジックを再利用する
       return parseWithZod(formData, { schema: skillSet });
@@ -84,6 +86,12 @@ const SkillSetForm = () => {
     // blurイベント発生時にフォームを検証する
     shouldValidate: "onBlur",
     shouldRevalidate: "onInput",
+  });
+
+  useNavigationGuard({
+    enabled: isNaviGuard,
+    confirm: () =>
+      window.confirm("編集中のものは保存されませんが、よろしいですか？"),
   });
 
   const languages = fields.language.getFieldList();
@@ -416,7 +424,13 @@ const SkillSetForm = () => {
           </Table>
 
           <div className="m-3 flex justify-end">
-            <Button className="bg-emerald-600 p-3" type="submit">
+            <Button
+              className="bg-emerald-600 p-3"
+              type="submit"
+              onClick={() => {
+                setIsNaviGuard(false); //強制的にnaviガードを外す
+              }}
+            >
               登録して次へ
             </Button>
           </div>
