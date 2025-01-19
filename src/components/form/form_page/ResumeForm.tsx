@@ -6,7 +6,7 @@ import {
   getTextareaProps,
   useForm,
 } from "@conform-to/react";
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { Experience, experienceSchema } from "@/type";
 import { parseWithZod } from "@conform-to/zod";
 import { useResumeFormContext } from "@/app/provider/ResumeFormProvider";
@@ -75,9 +75,6 @@ const ResumeForm = () => {
   });
 
   const experiences = fields.experience.getFieldList();
-
-  // 綺麗さは一旦おいておいて、汚いコードでつくろう
-  // 環境、規模が入ってない
 
   return (
     <>
@@ -460,6 +457,7 @@ const ResumeForm = () => {
                                         key={category.id}
                                         className=" p-2 mb-1"
                                       >
+                                        {/* カテゴリの入力 */}
                                         <div className="flex">
                                           <div>
                                             <input
@@ -487,6 +485,7 @@ const ResumeForm = () => {
                                             カテゴリーを削除
                                           </Button>
                                         </div>
+                                        {/* アイテム一覧 */}
                                         <ul key={category.id}>
                                           {itemField.map((item, itemI) => {
                                             return (
@@ -526,6 +525,16 @@ const ResumeForm = () => {
                                             );
                                           })}
                                         </ul>
+                                        {/* アイテム追加ボタン */}
+                                        <Button
+                                          className="bg-sky-700 p-1 h-7 text-xs cursor-pointer w-24 ml-2 hover:bg-sky-500"
+                                          {...form.insert.getButtonProps({
+                                            name: categoryField.items.name,
+                                            defaultValue: "", // 空のアイテムを追加
+                                          })}
+                                        >
+                                          アイテムを追加
+                                        </Button>
                                       </div>
                                     );
                                   }

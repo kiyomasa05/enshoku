@@ -312,7 +312,7 @@ const ConformForm = () => {
         <div className="flex justify-center m-10 ">
           <Button
             className=" p-8 text-2xl cursor-pointer hover:bg-rose-800"
-            onClick={() => downloadWord(skills, experience)}
+            onClick={() => downloadWord(skills, experience,otherData)}
           >
             この内容でWordをダウンロードする
           </Button>

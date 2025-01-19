@@ -28,10 +28,7 @@ const createExperienceTableRow = (project: ProjectList) => {
             ],
           }),
           new Paragraph(
-            ` ( ${calculatePeriod(
-              project.pjStartPeriod,
-              project.pjEndPeriod
-            )} )`
+            ` (${calculatePeriod(project.pjStartPeriod, project.pjEndPeriod)})`
           ),
         ],
         width: { size: 1500, type: WidthType.DXA },
@@ -43,14 +40,14 @@ const createExperienceTableRow = (project: ProjectList) => {
           new Paragraph({ text: "[担当工程]", spacing: { before: 50 } }),
           new Paragraph({
             text: `  ${project.inChargeProcess}`,
-            spacing: { before: 0, after: 0, line: 200, lineRule: "exact" }, // exactだとぴったりになる docxだとこの設定で良さそう
+            spacing: { before: 0, after: 0, line: 250, lineRule: "exact" }, // exactだとぴったりになる docxだとこの設定で良さそう
           }),
           new Paragraph({ text: "[担当詳細]", spacing: { before: 50 } }),
           ...project.doneContents.map(
             (content) =>
               new Paragraph({
                 text: `  ${content}`,
-                spacing: { before: 0, after: 0, line: 200, lineRule: "exact" },
+                spacing: { before: 0, after: 0, line: 250, lineRule: "exact" },
               })
           ),
           new Paragraph({ text: "[実績・工夫点]", spacing: { before: 50 } }),
@@ -58,7 +55,7 @@ const createExperienceTableRow = (project: ProjectList) => {
             (achievement) =>
               new Paragraph({
                 text: `  ${achievement}`,
-                spacing: { before: 0, after: 0, line: 200, lineRule: "exact" },
+                spacing: { before: 0, after: 0, line: 250, lineRule: "exact" },
               })
           ),
         ],
@@ -114,6 +111,13 @@ export const createExperienceDocx = (experience: Experience): DocxContent[] => {
   contents.push(
     new Paragraph({
       text: experience.summary,
+      spacing: { after: 100 },
+    })
+  );
+
+  contents.push(
+    new Paragraph({
+      text: "◼︎職務要約",
       spacing: { after: 100 },
     })
   );

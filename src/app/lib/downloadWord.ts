@@ -5,23 +5,32 @@ import {
   Paragraph,
   TextRun,
   SectionType,
-  HeadingLevel,
   AlignmentType,
 } from "docx";
-import { Experience, Skillset } from "@/type";
+import { Experience, OtherData, Skillset } from "@/type";
 import { createSkillDocx } from "./createSkillDocx";
 import { createExperienceDocx } from "./createExperienceDocx";
+import { createOtherDataDocx } from "./createOtherDataDocx";
 
 export const downloadWord = async (
   skills: Skillset,
-  experience: Experience
+  experience: Experience,
+  otherData: OtherData
 ) => {
-  if (!skills) {
-    alert("スキルデータがありません。");
+  if (!skills || !experience || !otherData) {
+    alert("データがありません。");
     return;
   }
   const skillTable = createSkillDocx(skills);
   const experienceContents = createExperienceDocx(experience);
+  const otherDataContents = createOtherDataDocx(otherData);
+
+  // 現在月日
+  const formattedDate = new Intl.DateTimeFormat("ja-JP", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).format(new Date());
 
   // ドキュメントを作成
   const doc = new Document({
@@ -59,19 +68,22 @@ export const downloadWord = async (
             heading: "Heading2",
             alignment: AlignmentType.CENTER,
           }),
-          ...experienceContents.map((content) => content),
+          new Paragraph(""),
+          // 名前と日付を入れる
+          new Paragraph({
+            text: formattedDate,
+            alignment: AlignmentType.RIGHT,
+          }),
+          ...experienceContents,
           new Paragraph({
             children: [new TextRun("テクニカルスキル")],
-            heading: "Heading2", // タイトル
-            alignment: AlignmentType.CENTER,
+            heading: "Heading3", // タイトル
           }),
+          new Paragraph(""),
           skillTable, // スキル
           new Paragraph(""),
-          new Paragraph(""),
-          new Paragraph({
-            children: [new TextRun("職務経歴")],
-            heading: "Heading2", // タイトル
-          }),
+
+          ...otherDataContents,
         ],
       },
     ],
@@ -80,6 +92,6 @@ export const downloadWord = async (
   // Used to export the file into a .docx file
   Packer.toBlob(doc).then((blob) => {
     // saveAs from FileSaver will download the file
-    saveAs(blob, "example.docx");
+    saveAs(blob, `${formattedDate}_職務経歴書.docx`);
   });
 };
