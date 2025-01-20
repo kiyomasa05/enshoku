@@ -15,6 +15,7 @@ import { downloadWord } from "@/app/lib/downloadWord";
 import { calculatePeriod, formatDate } from "@/app/lib/utils/formatDate";
 import { translateSkillCate } from "@/app/lib/utils/translateSkillCate";
 import React from "react";
+import ProgressBar from "@/components/ui/ProgressBar";
 
 const ConformForm = () => {
   const { experience, skills, otherData } = useResumeFormContext();
@@ -28,7 +29,8 @@ const ConformForm = () => {
   return (
     <>
       <div className="mx-auto w-full max-w-6xl overflow-x-auto">
-        <h1 className="text-2xl text-center">
+        <ProgressBar progress={"100"} progressbar={"w-3/3"} />
+        <h1 className="text-2xl text-center mt-10">
           この内容で出力します。ご確認ください
         </h1>
         <div className="relative mt-10">
@@ -312,7 +314,7 @@ const ConformForm = () => {
         <div className="flex justify-center m-10 ">
           <Button
             className=" p-8 text-2xl cursor-pointer hover:bg-rose-800"
-            onClick={() => downloadWord(skills, experience,otherData)}
+            onClick={() => downloadWord(skills, experience, otherData)}
           >
             この内容でWordをダウンロードする
           </Button>

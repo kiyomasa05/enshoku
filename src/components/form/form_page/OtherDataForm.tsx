@@ -23,7 +23,7 @@ import { useRouter } from "next/navigation";
 import TextInputForm from "../form_parts/TextInputForm";
 import { SelfPromotionSample } from "../form_parts/Sample";
 import { useNavigationGuard } from "next-navigation-guard";
-
+import ProgressBar from "@/components/ui/ProgressBar";
 
 type Params = {
   // step: number;
@@ -51,7 +51,6 @@ const OtherDataForm = ({ onNext }: Params) => {
       };
 
       setOtherData(formattedData);
-
       onNext();
     }
 
@@ -88,7 +87,9 @@ const OtherDataForm = ({ onNext }: Params) => {
   return (
     <>
       <div className="mx-auto w-full">
-        <h1 className="text-2xl text-center">その他の入力</h1>
+        <ProgressBar progress={"66"} progressbar={"w-2/3"} />
+
+        <h1 className="text-2xl text-center mt-16">その他の入力</h1>
         <form action={action} {...getFormProps(form)} className="mt-8">
           <label
             htmlFor={fields.selfPromotion.id}

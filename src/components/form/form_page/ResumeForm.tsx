@@ -22,6 +22,7 @@ import {
 import { ResumeFormSample } from "../form_parts/Sample";
 import { Button } from "@/components/ui/button";
 import { useNavigationGuard } from "next-navigation-guard";
+import ProgressBar from "@/components/ui/ProgressBar";
 
 type Params = {
   // step: number;
@@ -29,13 +30,12 @@ type Params = {
   // validateStep: (beforeStep: number, currentStep: number) => true | void;
 };
 const ResumeForm = ({ onNext }: Params) => {
-  // const router = useRouter();
-  // validateStep(1, step);
   const [isNaviGuard, setIsNaviGuard] = useState(true);
 
   const { setExperience, experience } = useResumeFormContext();
   // action
   const createResume = async (prevState: unknown, formData: FormData) => {
+    setIsNaviGuard(false);
     const submission = parseWithZod(formData, {
       schema: experienceSchema,
     });
@@ -62,9 +62,10 @@ const ResumeForm = ({ onNext }: Params) => {
         })),
       };
       setExperience(formattedData);
-      setIsNaviGuard(false);
       onNext();
-      // router.push("/resume?step=2");
+    }
+    if (submission.status === "error") {
+      setIsNaviGuard(true);
     }
 
     return submission.reply();
@@ -93,7 +94,9 @@ const ResumeForm = ({ onNext }: Params) => {
 
   return (
     <>
-      <h2 className="text-center text-2xl">職務経歴</h2>
+      <ProgressBar progress={"0"} progressbar={"w-0"} />
+
+      <h2 className="text-center text-2xl mt-16">職務経歴</h2>
       <p className="mt-4 text-lg">職務経歴を入力してください</p>
       <ResumeFormSample />
       <form action={action} {...getFormProps(form)}>

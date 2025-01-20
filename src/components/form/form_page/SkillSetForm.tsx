@@ -14,9 +14,9 @@ import { useActionState, useEffect, useState } from "react";
 import { skillSet, Skillset } from "@/type";
 import { parseWithZod } from "@conform-to/zod";
 import { useResumeFormContext } from "@/app/provider/ResumeFormProvider";
-import { useRouter } from "next/navigation";
 import TextInputForm from "../form_parts/TextInputForm";
 import { useNavigationGuard } from "next-navigation-guard";
+import ProgressBar from "@/components/ui/ProgressBar";
 
 type Params = {
   // step: number;
@@ -30,6 +30,7 @@ const SkillSetForm = ({ onNext }: Params) => {
 
   // action
   const createSkills = async (prevState: unknown, formData: FormData) => {
+    setIsNaviGuard(false);
     const submission = parseWithZod(formData, {
       schema: skillSet,
     });
@@ -59,9 +60,10 @@ const SkillSetForm = ({ onNext }: Params) => {
       };
 
       setSkills(formattedData);
-      setIsNaviGuard(false);
       onNext();
-      // router.push("/resume?step=3");
+    }
+    if (submission.status === "error") {
+      setIsNaviGuard(true);
     }
 
     return submission.reply();
@@ -69,12 +71,6 @@ const SkillSetForm = ({ onNext }: Params) => {
 
   // フォームアクションが呼び出された時にstateを更新
   const [lastResult, action] = useActionState(createSkills, undefined);
-
-  // useEffect(() => {
-  //   if (lastResult && lastResult.status === "success") {
-  //     router.push("/resume?step=3");
-  //   }
-  // }, [lastResult, router]);
 
   const [form, fields] = useForm({
     lastResult, // 前回の送信結果を同期
@@ -102,7 +98,9 @@ const SkillSetForm = ({ onNext }: Params) => {
   return (
     <>
       <div className="mx-auto w-full">
-        <h1 className="text-2xl text-center">テクニカルスキル</h1>
+        <ProgressBar progress={"33"} progressbar={"w-1/3"} />
+
+        <h1 className="text-2xl text-center mt-16">テクニカルスキル</h1>
         <form action={action} {...getFormProps(form)} className="mt-8">
           {/* 言語 */}
           <h2>言語を入力してください</h2>
