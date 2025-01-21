@@ -6,17 +6,16 @@ import {
   WidthType,
   TableLayoutType,
   TextRun,
-  VerticalMergeType,
 } from "docx";
 import { OtherData } from "@/type";
 
 type DocxContent = Paragraph | Table;
 
-type portfolio = {
-  title: string;
-  url: string;
-  explanation: string;
-};
+// type portfolio = {
+//   title: string;
+//   url: string;
+//   explanation: string;
+// };
 
 /**
  * experienceからdocxのコンテンツを作成

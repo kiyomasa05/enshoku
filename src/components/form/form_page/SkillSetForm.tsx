@@ -10,8 +10,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useActionState, useEffect, useState } from "react";
-import { skillSet, Skillset } from "@/type";
+import { useActionState, useState } from "react";
+import { Skill, skillSet, Skillset } from "@/type";
 import { parseWithZod } from "@conform-to/zod";
 import { useResumeFormContext } from "@/app/provider/ResumeFormProvider";
 import TextInputForm from "../form_parts/TextInputForm";
@@ -37,22 +37,22 @@ const SkillSetForm = ({ onNext }: Params) => {
 
     if (submission.status === "success") {
       const formattedData: Skillset = {
-        language: submission.value.language.map((lang: any) => ({
+        language: submission.value.language.map((lang: Skill) => ({
           kinds: lang.kinds,
           yearsOfExperience: lang.yearsOfExperience,
           description: lang.description,
         })),
-        FW: submission.value.FW.map((fw: any) => ({
+        FW: submission.value.FW.map((fw: Skill) => ({
           kinds: fw.kinds,
           yearsOfExperience: fw.yearsOfExperience,
           description: fw.description,
         })),
-        infra: submission.value.infra.map((inf: any) => ({
+        infra: submission.value.infra.map((inf: Skill) => ({
           kinds: inf.kinds,
           yearsOfExperience: inf.yearsOfExperience,
           description: inf.description,
         })),
-        other: submission.value.other.map((oth: any) => ({
+        other: submission.value.other.map((oth: Skill) => ({
           kinds: oth.kinds,
           yearsOfExperience: oth.yearsOfExperience,
           description: oth.description,

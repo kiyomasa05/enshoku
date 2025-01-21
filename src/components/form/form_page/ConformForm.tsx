@@ -249,7 +249,7 @@ const ConformForm = () => {
                 <TableCell>
                   {otherData.qualification ? (
                     <ul>
-                      {otherData.qualification.map((shikaku, index) => {
+                      {otherData.qualification.map((shikaku) => {
                         return (
                           <li key={shikaku} className="list-square">
                             {shikaku}

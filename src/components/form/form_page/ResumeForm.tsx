@@ -6,11 +6,10 @@ import {
   getTextareaProps,
   useForm,
 } from "@conform-to/react";
-import { useActionState, useEffect, useState } from "react";
+import { useActionState, useState } from "react";
 import { Experience, experienceSchema } from "@/type";
 import { parseWithZod } from "@conform-to/zod";
 import { useResumeFormContext } from "@/app/provider/ResumeFormProvider";
-import { useRouter } from "next/navigation";
 import {
   Table,
   TableBody,

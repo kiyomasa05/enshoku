@@ -1,7 +1,7 @@
 "use client";
 
 import { Experience, OtherData, Skillset } from "@/type";
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 
 type ResumeFormContextType = {
   experience: Experience;
@@ -12,11 +12,11 @@ type ResumeFormContextType = {
   setOtherData: (otherData: OtherData) => void;
 };
 
-const LOCAL_STORAGE_KEYS = {
-  EXPERIENCE: "resume_experience",
-  SKILLS: "resume_skills",
-  OTHER_DATA: "resume_otherData",
-};
+// const LOCAL_STORAGE_KEYS = {
+//   EXPERIENCE: "resume_experience",
+//   SKILLS: "resume_skills",
+//   OTHER_DATA: "resume_otherData",
+// };
 
 export const defaultSkillSet: Skillset = {
   language: [

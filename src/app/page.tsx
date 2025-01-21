@@ -1,8 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 
-const hatenaImageStyle = {};
-
 export default function Home() {
   return (
     <>
@@ -10,8 +8,6 @@ export default function Home() {
         <div className="relative">
           <Image
             src="/topimage.jpg"
-            // height={680}
-            // width={1280}
             height={630}
             width={950}
             alt="topimage"
@@ -207,11 +203,6 @@ export default function Home() {
       </div>
 
       {/* 職務経歴書を定期的に作ることは大事なことでうす。byピポっど */}
-      {/* topページ 会員登録すると、作成途中のデータを利用できます。
-      <Link href={"/resume"}>会員登録して作成</Link> */}
-      {/* <button className="mt-20 bg-sky-200 text-sky-700 border-2 border-transparent font-medium text-3xl py-3 px-9 rounded-full hover:bg-white hover:border-black duration-300">
-        <Link href={"/resume"}>会員登録なしで利用</Link>
-      </button> */}
     </>
   );
 }

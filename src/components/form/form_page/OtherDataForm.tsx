@@ -19,7 +19,6 @@ import { useActionState, useState } from "react";
 import { OtherData, otherDataSchema } from "@/type";
 import { parseWithZod } from "@conform-to/zod";
 import { useResumeFormContext } from "@/app/provider/ResumeFormProvider";
-import { useRouter } from "next/navigation";
 import TextInputForm from "../form_parts/TextInputForm";
 import { SelfPromotionSample } from "../form_parts/Sample";
 import { useNavigationGuard } from "next-navigation-guard";

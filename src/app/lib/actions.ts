@@ -3,7 +3,6 @@
 import { redirect } from "next/navigation";
 import { parseWithZod } from "@conform-to/zod";
 import { signinSchema } from "@/type";
-import { useContext } from "react";
 
 // 最後の送信処理
 export async function signin(prevState: unknown, formData: FormData) {

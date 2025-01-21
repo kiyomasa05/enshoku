@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import ResumeForm from "@/components/form/form_page/ResumeForm";
 import { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -14,8 +15,15 @@ import OtherDataForm from "@/components/form/form_page/OtherDataForm";
  * stepというクエリパラメータでexperienceとskillのページを分ける
  */
 
-// stepのクエリパラメータで入力を細かく制御
 export default function Resume() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResumeContent />
+    </Suspense>
+  );
+}
+
+function ResumeContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const [step, setStep] = useState(1);
@@ -45,8 +53,6 @@ export default function Resume() {
       router.push("/resume?step=4");
     }
   };
-  const validateStep = (beforeStep: number, currentStep: number) =>
-    currentStep - 1 === beforeStep ? true : router.push("/resume?step=1");
 
   return (
     <>
