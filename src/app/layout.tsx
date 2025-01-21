@@ -3,6 +3,7 @@ import "./globals.css";
 import { Noto_Sans_JP } from "next/font/google";
 import { NavigationGuardProvider } from "next-navigation-guard";
 import Header from "@/components/ui/Header";
+import Footer from "@/components/ui/Footer";
 
 // https://zenn.dev/takna/articles/next-tailwind-googlefonts-basic
 const notoSansJP = Noto_Sans_JP({
@@ -31,6 +32,7 @@ export default function RootLayout({
         <NavigationGuardProvider>
           <Header />
           {children}
+          <Footer />
         </NavigationGuardProvider>
       </body>
     </html>

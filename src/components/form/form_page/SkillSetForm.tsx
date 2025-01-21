@@ -110,7 +110,7 @@ const SkillSetForm = ({ onNext }: Params) => {
                 <TableHead className="text-center">No.</TableHead>
                 <TableHead className="w-80">言語</TableHead>
                 <TableHead>経験年数</TableHead>
-                <TableHead>備考、説明</TableHead>
+                <TableHead>備考、説明(入力しなくても可)</TableHead>
                 <TableHead></TableHead>
               </TableRow>
             </TableHeader>
@@ -193,7 +193,7 @@ const SkillSetForm = ({ onNext }: Params) => {
                 <TableHead className="text-center">No.</TableHead>
                 <TableHead className="w-80">フレームワーク</TableHead>
                 <TableHead>経験年数</TableHead>
-                <TableHead>備考、説明</TableHead>
+                <TableHead>備考、説明(入力しなくても可)</TableHead>
                 <TableHead></TableHead>
               </TableRow>
             </TableHeader>
@@ -271,7 +271,7 @@ const SkillSetForm = ({ onNext }: Params) => {
                 <TableHead className="text-center">No.</TableHead>
                 <TableHead className="w-80">インフラ系スキル</TableHead>
                 <TableHead>経験年数</TableHead>
-                <TableHead>備考、説明</TableHead>
+                <TableHead>備考、説明(入力しなくても可)</TableHead>
                 <TableHead></TableHead>
               </TableRow>
             </TableHeader>
@@ -351,7 +351,7 @@ const SkillSetForm = ({ onNext }: Params) => {
                 <TableHead className="text-center">No.</TableHead>
                 <TableHead className="w-80">その他スキル</TableHead>
                 <TableHead>経験年数</TableHead>
-                <TableHead>備考、説明</TableHead>
+                <TableHead>備考、説明(入力しなくても可)</TableHead>
                 <TableHead></TableHead>
               </TableRow>
             </TableHeader>

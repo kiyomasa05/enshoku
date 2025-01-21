@@ -20,11 +20,6 @@ import ProgressBar from "@/components/ui/ProgressBar";
 const ConformForm = () => {
   const { experience, skills, otherData } = useResumeFormContext();
   const router = useRouter();
-  // const resume = experience.experience
-
-  const companiesPreWorkingAt = experience.experience;
-  console.log(companiesPreWorkingAt);
-  // console.log(typeof companiesPreWorkingAt);
 
   return (
     <>
