@@ -16,7 +16,7 @@ export default function Home() {
             className="mx-auto block"
           />
           <button className="absolute bottom-6 left-36 bg-sky-200 text-sky-700 border-2 border-transparent font-blod text-2xl py-3 px-9 rounded-full hover:bg-white hover:border-black duration-300  shadow-md">
-            <Link href="#createButton">職務経歴書を作成する</Link>
+            <Link href={"/resume?step=1"}>職務経歴書を作成する</Link>
           </button>
         </div>
         <p className="pl-36 pt-2">※スマホからの入力は対応しておりません。</p>
