@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { Noto_Sans_JP } from "next/font/google";
 import { NavigationGuardProvider } from "next-navigation-guard";
@@ -21,6 +22,9 @@ export const metadata: Metadata = {
   description: "エンジニアの職務経歴書作成サイトです",
 };
 
+// analicsの設定
+//zenn.dev/nenenemo/articles/49a28ddfebf435#%40next%2Fthird-parties
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,6 +32,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja" className={`${notoSansJP.variable}`}>
+      <GoogleAnalytics gaId="G-ZBBRYJ4WDW" />
       <body>
         <NavigationGuardProvider>
           <Header />
