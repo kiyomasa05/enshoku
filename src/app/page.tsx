@@ -15,10 +15,6 @@ export default function Home() {
             quality={100}
             className="mx-auto block"
           />
-          {/* <button className="absolute bottom-6 left-36 bg-sky-200 text-sky-700 border-2 border-transparent font-blod text-2xl py-3 px-9 rounded-full hover:bg-white hover:border-black duration-300  shadow-md">
-            <Link href={"/resume?step=1"}>職務経歴書を作成する</Link>
-          </button> */}
-          {/* <button> */}
           <Link
             href={"/resume?step=1"}
             className="absolute bottom-6 left-36 bg-sky-200 text-sky-700 border-2 border-transparent font-blod text-2xl py-3 px-9 rounded-full hover:bg-white hover:border-black duration-300  shadow-md"
@@ -203,7 +199,7 @@ export default function Home() {
               className="display-inline ml-4"
             />
           </Link>
-          <div className="absolute top-1 right-16 bg-yellow-400 text-black font-bold text-lg py-3 px-4 rounded-lg shadow-lg flex items-center">
+          <div className="absolute top-1 right-16 bg-yellow-400 text-black font-bold text-lg py-3 px-4 rounded-lg  flex items-center">
             もちろん無料！
             <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-yellow-400"></div>
           </div>
