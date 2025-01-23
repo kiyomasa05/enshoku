@@ -1,4 +1,5 @@
-import { useRouter } from "next/router";
+"use client";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 declare global {
@@ -9,24 +10,27 @@ type Props = {
 };
 
 // 参考https://blog.stin.ink/articles/add-google-adsense-to-blog
+//https://pote-chil.com/posts/nextjs-google-adsense
 export const GoogleAdAdSenseButtomAd = ({ pId }: Props) => {
-  const { asPath } = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     try {
-      (adsbygoogle = window.adsbygoogle || []).push({});
-    } catch (error) {
-      console.error(error);
+      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
+        {}
+      );
+    } catch (e) {
+      console.error(e);
     }
-  }, [asPath]);
+  }, [pathname]);
 
   return (
-    <div key={asPath}>
+    <div>
       <ins
-        className="adsbygoogle"
-        style={{ display: "block" }}
+        className="adsbygoogle inline-display w-5/6 h-24"
+        data-adtest={process.env.NODE_ENV === "development" ? "on" : "off"}
         data-ad-client={pId}
-        data-ad-slot="999999999"
+        data-ad-slot="7532327507"
         data-ad-format="auto"
         data-full-width-responsive="true"
       />
