@@ -24,24 +24,24 @@ export default function Home() {
         <div>
           <div className="confuse mt-10 border-b-2 border-gray-500 border-solid ">
             <div className="flex gap-5 justify-center">
-              <div className="">
+              <div className="w-16 h-44 relative">
                 <Image
                   src="/confuse-men.png"
-                  width={40}
-                  height={40}
+                  fill={true}
+                  sizes="6rem"
                   alt="confuse-men"
-                  className="inline"
-                />
-                <Image
-                  src="/hatena.png"
-                  width={40}
-                  height={40}
-                  fill={false}
-                  alt="hatena"
-                  // style={ }
-                  className="inline-block align-top ml-10 origin-top-left rotate-12"
                 />
               </div>
+              <div className="w-12 h-20 relative">
+                <Image
+                  src="/hatena.png"
+                  fill={true}
+                  sizes="6rem"
+                  alt="hatena"
+                  className="inline-block align-top ml-2 origin-top-left rotate-12"
+                />
+              </div>
+
               <div>
                 <h2 className="text-3xl font-extrabold pt-8 pb-4 px-20 mt-10 border-b-4 border-indigo-500 border-solid ">
                   こんな困り事はありませんか？
@@ -50,14 +50,16 @@ export default function Home() {
             </div>
             <div className="confuse-list mt-10 pb-2 ">
               {/* 1つ目 */}
+              {/*imageは 237 × 414 px fillで指定するhttps://nextjs.org/docs/pages/api-reference/components/image#fill*/}
               <div className="flex items-start space-x-8">
-                <Image
-                  src="/confuse-men2.png"
-                  width={80}
-                  height={80}
-                  alt="confuse-men"
-                  className=""
-                />
+                <div className="w-24 h-40 relative">
+                  <Image
+                    src="/confuse-men2.png"
+                    fill={true}
+                    sizes="6rem"
+                    alt="confuse-men"
+                  />
+                </div>
                 <div className="relative bg-blue-100 text-gray-800 p-6 rounded-lg shadow-md">
                   <p className="text-xl">
                     職務経歴書に何書けばいいかわからない
@@ -69,13 +71,14 @@ export default function Home() {
               </div>
               {/* 2つ目 */}
               <div className="mt-10 flex items-start space-x-8 flex-row-reverse">
-                <Image
-                  src="/confuse-men2.png"
-                  width={80}
-                  height={80}
-                  alt="confuse-men"
-                  className=""
-                />
+                <div className="w-24 h-40 relative">
+                  <Image
+                    src="/confuse-men2.png"
+                    fill={true}
+                    sizes="6rem"
+                    alt="confuse-men"
+                  />
+                </div>
                 <div className="relative bg-blue-100 text-gray-800 p-8 rounded-lg shadow-md ">
                   <p className="text-xl">
                     書類でスキルがうまく伝わらず、書類選考で落ちてしまう。
@@ -85,13 +88,14 @@ export default function Home() {
               </div>
               {/* 3つ目 */}
               <div className="mt-10 flex items-start space-x-8">
-                <Image
-                  src="/confuse-men2.png"
-                  width={80}
-                  height={80}
-                  alt="confuse-men"
-                  className=""
-                />
+                <div className="w-24 h-40 relative">
+                  <Image
+                    src="/confuse-men2.png"
+                    fill={true}
+                    sizes="6rem"
+                    alt="confuse-men"
+                  />
+                </div>
                 <div className="relative bg-blue-100 text-gray-800 p-6 rounded-lg shadow-md">
                   <p className="text-xl">
                     word慣れてないし、作るのがめんどくさい
@@ -109,7 +113,7 @@ export default function Home() {
                 width={100}
                 height={100}
                 alt="taikyokuken"
-                className="inline"
+                className="inline object-contain w-auto h-auto max-w-full max-h-full"
               />
               <h2 className="text-5xl font-extrabold mx-10">
                 エンショクなら！
@@ -119,7 +123,7 @@ export default function Home() {
                 width={100}
                 height={100}
                 alt="taikyokuken"
-                className="inline"
+                className="inline object-contain w-auto h-auto max-w-full max-h-full"
               />
             </div>
 
@@ -133,7 +137,7 @@ export default function Home() {
                     alt="macho1-men"
                     width={80}
                     height={80}
-                    className="object-contain"
+                    className="object-contain w-auto h-auto max-w-full max-h-full"
                   />
                 </div>
                 <p className="text-center text-xl text-gray-700 leading-relaxed">
@@ -148,7 +152,7 @@ export default function Home() {
                     alt="macho2-men"
                     width={80}
                     height={80}
-                    className="object-contain"
+                    className="object-contain w-auto h-auto max-w-full max-h-full"
                   />
                 </div>
                 <p className="text-center text-xl text-gray-700 leading-relaxed">
@@ -163,7 +167,7 @@ export default function Home() {
                     alt="macho3-men"
                     width={80}
                     height={80}
-                    className="object-contain"
+                    className="object-contain w-auto h-auto max-w-full max-h-full"
                   />
                 </div>
                 <p className="text-center text-xl text-gray-700 leading-relaxed">
@@ -201,6 +205,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      {/* プライバシーポリシー */}
 
       {/* 職務経歴書を定期的に作ることは大事なことでうす。byピポっど */}
     </>
