@@ -5,6 +5,8 @@ import { Noto_Sans_JP } from "next/font/google";
 import { NavigationGuardProvider } from "next-navigation-guard";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
+import GoogleAdsense from "@/components/other/googleAdSense";
+import { GoogleAdAdSenseButtomAd } from "@/components/other/GoogleAdSenseButtomAd";
 
 // https://zenn.dev/takna/articles/next-tailwind-googlefonts-basic
 const notoSansJP = Noto_Sans_JP({
@@ -33,11 +35,13 @@ export default function RootLayout({
   return (
     <html lang="ja" className={`${notoSansJP.variable}`}>
       <GoogleAnalytics gaId="G-ZBBRYJ4WDW" />
+      <GoogleAdsense pId={"4654824676420361"} />
       <body>
         <NavigationGuardProvider>
           <Header />
           {children}
           <Footer />
+          {/* <GoogleAdAdSenseButtomAd pId={"4654824676420361"} /> */}
         </NavigationGuardProvider>
       </body>
     </html>
