@@ -3,7 +3,9 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 declare global {
-  var adsbygoogle: unknown[];
+  interface Window {
+    adsbygoogle?: unknown[];
+  }
 }
 type Props = {
   pId: string;
@@ -16,9 +18,7 @@ export const GoogleAdAdSenseButtomAd = ({ pId }: Props) => {
 
   useEffect(() => {
     try {
-      ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push(
-        {}
-      );
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
     } catch (e) {
       console.error(e);
     }

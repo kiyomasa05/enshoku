@@ -5,7 +5,7 @@ import { Noto_Sans_JP } from "next/font/google";
 import { NavigationGuardProvider } from "next-navigation-guard";
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
-import GoogleAdsense from "@/components/other/googleAdSense";
+import GoogleAdsense from "@/components/other/GoogleAdSense";
 import { GoogleAdAdSenseButtomAd } from "@/components/other/GoogleAdSenseButtomAd";
 
 // https://zenn.dev/takna/articles/next-tailwind-googlefonts-basic
