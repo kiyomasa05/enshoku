@@ -1,4 +1,3 @@
-
 import Link from "next/link";
 
 export default function OtherToolPage() {
@@ -89,7 +88,7 @@ export default function OtherToolPage() {
               </span>
 
               <h1 className="text-xl font-semibold text-gray-700 capitalize dark:text-white">
-                メールテンプレート作成ツール
+                メールテンプレート作成ツール<br />(準備中)
               </h1>
 
               <p className="text-gray-500 dark:text-gray-300">

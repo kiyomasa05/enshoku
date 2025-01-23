@@ -15,9 +15,17 @@ export default function Home() {
             quality={100}
             className="mx-auto block"
           />
-          <button className="absolute bottom-6 left-36 bg-sky-200 text-sky-700 border-2 border-transparent font-blod text-2xl py-3 px-9 rounded-full hover:bg-white hover:border-black duration-300  shadow-md">
+          {/* <button className="absolute bottom-6 left-36 bg-sky-200 text-sky-700 border-2 border-transparent font-blod text-2xl py-3 px-9 rounded-full hover:bg-white hover:border-black duration-300  shadow-md">
             <Link href={"/resume?step=1"}>職務経歴書を作成する</Link>
-          </button>
+          </button> */}
+          {/* <button> */}
+          <Link
+            href={"/resume?step=1"}
+            className="absolute bottom-6 left-36 bg-sky-200 text-sky-700 border-2 border-transparent font-blod text-2xl py-3 px-9 rounded-full hover:bg-white hover:border-black duration-300  shadow-md"
+          >
+            職務経歴書を作成する
+          </Link>
+          {/* </button> */}
         </div>
         <p className="pl-36 pt-2">※スマホからの入力は対応しておりません。</p>
         {/* 説明文 */}
@@ -182,19 +190,26 @@ export default function Home() {
         </div>
 
         <div className="m-20 flex justify-center items-center relative">
-          <button
-            id="createButton"
-            className="bg-sky-800 text-white border-2 border-transparent font-extrabold text-2xl py-3 px-9 w-1/2 hover:bg-sky-600 hover:border-black hover:text-gray-800 duration-300 rounded-lg shadow-md"
+          <Link
+            href="/resume?step=1"
+            className="bg-sky-800 text-white border-2 border-transparent font-extrabold text-2xl py-3 px-9 w-1/2 hover:bg-sky-600 hover:border-black hover:text-gray-800 duration-300 rounded-lg shadow-md flex items-center justify-center"
           >
-            <Link href={"/resume?step=1"}>職務経歴書を作成する</Link>
-          </button>
+            職務経歴書を作成する
+            <Image
+              src="/right-arrow1.png"
+              alt="right-arrow"
+              width={20}
+              height={20}
+              className="display-inline ml-4"
+            />
+          </Link>
           <div className="absolute top-1 right-16 bg-yellow-400 text-black font-bold text-lg py-3 px-4 rounded-lg shadow-lg flex items-center">
             もちろん無料！
             <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-yellow-400"></div>
           </div>
         </div>
 
-        <div className="mt-10 flex items-start space-x-8 mb-20">
+        {/* <div className="mt-10 flex items-start space-x-8 mb-20">
           <div className="relative bg-gray-100 text-gray-800 p-2 rounded-lg shadow-md">
             <p className="text-sm">
               作者が未経験ながら転職できたのは職務経歴書が褒められたためです。
@@ -203,7 +218,7 @@ export default function Home() {
             </p>
             <div className="absolute -left-2 top-8 w-4 h-4 bg-gray-100 rotate-45 transform rounded-sm"></div>
           </div>
-        </div>
+        </div> */}
       </div>
       {/* プライバシーポリシー */}
 
