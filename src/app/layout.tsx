@@ -41,7 +41,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
-          {/* <GoogleAdAdSenseButtomAd pId={"4654824676420361"} /> */}
+          <GoogleAdAdSenseButtomAd pId={"4654824676420361"} />
         </NavigationGuardProvider>
       </body>
     </html>
