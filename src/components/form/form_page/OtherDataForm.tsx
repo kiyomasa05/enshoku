@@ -130,17 +130,17 @@ const OtherDataForm = ({ onNext }: Params) => {
               資格を追加する
             </Button>
           </div>
+
           <ul className="pl-10">
             {qualificationFields.map((qualification, qIndex) => {
               return (
-                <li key={qualification.key} className="list-square mb-2">
-                  <input
-                    className="rounded-md p-2 border-sky-400 border-solid border w-80"
-                    {...getInputProps(qualification, {
-                      type: "text",
-                    })}
-                    key={qualification.key}
-                  />
+                <li
+                  key={qualification.key}
+                  className="list-square mb-2 flex items-center"
+                >
+                  <div className="w-1/4">
+                    <TextInputForm content={qualification} />
+                  </div>
                   <Button
                     className="bg-rose-400 p-1 ml-2 text-xs cursor-pointer h-7 hover:bg-rose-200"
                     {...form.remove.getButtonProps({
