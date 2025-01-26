@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  getFormProps,
-  getInputProps,
-  getTextareaProps,
-  useForm,
-} from "@conform-to/react";
+import { getFormProps, getTextareaProps, useForm } from "@conform-to/react";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -25,13 +20,9 @@ import { useNavigationGuard } from "next-navigation-guard";
 import ProgressBar from "@/components/ui/ProgressBar";
 
 type Params = {
-  // step: number;
   onNext: () => void;
-  // validateStep: (beforeStep: number, currentStep: number) => true | void;
 };
 const OtherDataForm = ({ onNext }: Params) => {
-  // const router = useRouter();
-
   const { otherData, setOtherData } = useResumeFormContext();
   const [isNaviGuard, setIsNaviGuard] = useState(true);
 
