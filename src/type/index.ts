@@ -131,7 +131,9 @@ export const otherDataSchema = z.object({
     required_error: "自己PRは必須です。",
   }),
   // 取得資格
-  qualification: z.array(z.string()).nullable(),
+  qualification: z
+    .array(z.string({ required_error: "資格の入力をしてください。" }))
+    .nullable(),
   // portfolio
   portfolios: z
     .object({

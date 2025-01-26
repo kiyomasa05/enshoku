@@ -192,7 +192,7 @@ const OtherDataForm = ({ onNext }: Params) => {
                       <Button
                         className="bg-rose-400 p-1 ml-2 text-xs cursor-pointer h-7 hover:bg-rose-200"
                         {...form.remove.getButtonProps({
-                          name: portfolios.name,
+                          name: fields.portfolios.name,
                           index: pIndex,
                         })}
                       >
