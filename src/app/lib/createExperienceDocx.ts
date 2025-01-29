@@ -89,7 +89,7 @@ const createExperienceTableRow = (project: ProjectList) => {
           new Paragraph("[役割]"),
           new Paragraph(project.scale.role),
         ],
-        width: { size: 1000, type: WidthType.DXA },
+        width: { size: 1500, type: WidthType.DXA },
       }),
     ],
   });
@@ -126,16 +126,18 @@ export const createExperienceDocx = (experience: Experience): DocxContent[] => {
     // 会社情報
     contents.push(
       new Paragraph({
-        children: [new TextRun({ text: "会社名", bold: true })],
-      }),
-      new Paragraph({
-        children: [new TextRun({ text: company.companyName, bold: true })],
+        children: [
+          new TextRun({ text: "会社名 : ", bold: true }),
+          new TextRun({ text: company.companyName, bold: true }),
+        ],
       }),
 
       new Paragraph({
-        children: [new TextRun({ text: "会社概要", bold: true })],
-      }),
-      new Paragraph(company.companyOverview)
+        children: [
+          new TextRun({ text: "会社概要 : ", bold: true }),
+          new TextRun({ text: company.companyOverview }),
+        ],
+      })
     );
 
     // プロジェクト情報のテーブル作成
@@ -172,7 +174,7 @@ export const createExperienceDocx = (experience: Experience): DocxContent[] => {
                 children: [new TextRun({ text: "規模", bold: true })],
               }),
             ],
-            width: { size: 1000, type: WidthType.DXA },
+            width: { size: 1500, type: WidthType.DXA },
           }),
         ],
       }),
@@ -183,9 +185,9 @@ export const createExperienceDocx = (experience: Experience): DocxContent[] => {
 
     contents.push(
       new Table({
-        columnWidths: [1500, 5000, 2500, 1000],
+        columnWidths: [1500, 5000, 2500, 1500],
         rows: tableRows,
-        width: { size: 10000, type: WidthType.DXA },
+        width: { size: 11000, type: WidthType.DXA },
         layout: TableLayoutType.FIXED,
       })
     );

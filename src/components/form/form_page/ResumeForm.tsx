@@ -110,6 +110,9 @@ const ResumeForm = ({ onNext }: Params) => {
           {...getTextareaProps(fields.summary)}
           key={fields.summary.key}
         ></textarea>
+        <p id={fields.summary.errorId} className="text-rose-500">
+          {fields.summary.errors}
+        </p>
         {/* 経験会社ごとに繰り返し */}
         {experiences.map((experience, eIndex) => {
           const experienceFields = experience.getFieldset();
@@ -447,7 +450,7 @@ const ResumeForm = ({ onNext }: Params) => {
                                             index: achievementI,
                                           })}
                                         >
-                                          担当詳細を削除
+                                          実績・工夫点を削除
                                         </Button>
                                       </div>
                                     );
