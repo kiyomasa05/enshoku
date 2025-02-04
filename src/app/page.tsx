@@ -187,7 +187,11 @@ export default function Home() {
         {/* サンプル */}
         <div className="sample mt-12">
           <h2 className="text-4xl text-center font-extrabold m-3">作成例</h2>
-          <p className="text-center p-4 text-xl font-semibold">表形式で出力されます！wordなので後で自分好みに編集も可能！</p>
+          <p className="text-center p-4 text-xl font-semibold">
+            表形式で{" "}
+            <span className="font-bold text-sky-600 underline">伝わる</span>{" "}
+            職務経歴書に！
+          </p>
           <div className="flex items-center gap-5">
             <div className="flex flex-col items-center p-5  rounded-lg shadow-lg w-1/2 bg-gray-100">
               <p className="p-3  text-xl">職務経歴欄</p>
