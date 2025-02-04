@@ -131,7 +131,6 @@ export default function Home() {
               />
             </div>
 
-            {/* あああ */}
             {/* コンポーネント化してもいい */}
             <div className="flex gap-5 justify-center">
               <div className="flex flex-col items-center p-5 rounded-lg shadow-lg w-1/3 bg-green-100">
@@ -180,6 +179,36 @@ export default function Home() {
                     叩き台だけ作っていくらでもご自身の好きなように変えられる！
                   </mark>
                 </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* サンプル */}
+        <div className="sample mt-12">
+          <h2 className="text-4xl text-center font-extrabold m-3">作成例</h2>
+          <p className="text-center p-4 text-xl font-semibold">表形式で出力されます！wordなので後で自分好みに編集も可能！</p>
+          <div className="flex items-center gap-5">
+            <div className="flex flex-col items-center p-5  rounded-lg shadow-lg w-1/2 bg-gray-100">
+              <p className="p-3  text-xl">職務経歴欄</p>
+              <div>
+                <Image
+                  src={"/resume-sample.png"}
+                  width={600}
+                  height={600}
+                  alt="resume-sample"
+                />
+              </div>
+            </div>
+            <div className="flex flex-col items-center p-5  rounded-lg shadow-lg w-1/2 bg-gray-100">
+              <p className="p-3  text-xl">スキル欄</p>
+              <div>
+                <Image
+                  src={"/skill-sample.png"}
+                  width={600}
+                  height={600}
+                  alt="skill-sample"
+                />
               </div>
             </div>
           </div>
