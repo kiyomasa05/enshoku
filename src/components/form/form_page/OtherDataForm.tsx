@@ -95,6 +95,7 @@ const OtherDataForm = ({ onNext }: Params) => {
             className="rounded-md p-1 border-sky-400 border-solid border w-full h-40 mb-10"
             {...getTextareaProps(fields.selfPromotion)}
             key={fields.selfPromotion.key}
+            placeholder={`【伝える力、要約力】 相手の立場になって考え、図解や解説などで理解しやすく伝えるのが得意です。伝えたいことを絞って要約して伝えることも得意で、上流工程や会議などで円滑にコミュニケーションをとって進めることができます。\n\n【調べる力】 エンジニアとしての経験は未熟ですが、調べて実装や手順の作成などが可能です。 知識がない領域でも全体感をとらえてから、知りたい部分の調査をするよう意識し、業務を行ってきました。 未経験ながら１年業務ができたのは、周りのおかげと調べる力があるためと考えてます。`}
           ></textarea>
           <p id={fields.selfPromotion.errorId} className="text-rose-500">
             {fields.selfPromotion.errors}
@@ -130,7 +131,10 @@ const OtherDataForm = ({ onNext }: Params) => {
                   className="list-square mb-2 flex items-center"
                 >
                   <div className="w-1/4">
-                    <TextInputForm content={qualification} />
+                    <TextInputForm
+                      content={qualification}
+                      placeholder={"資格名"}
+                    />
                   </div>
                   <Button
                     className="bg-rose-400 p-1 ml-2 text-xs cursor-pointer h-7 hover:bg-rose-200"
@@ -171,7 +175,7 @@ const OtherDataForm = ({ onNext }: Params) => {
                 return (
                   <TableRow key={portfolios.key}>
                     <TableCell className="font-medium text-gray-500 text-center">
-                      <TextInputForm content={portfolio.title} />
+                      <TextInputForm content={portfolio.title} placeholder={"サービス名"} />
                     </TableCell>
                     <TableCell className="font-medium text-gray-500 text-center">
                       <TextInputForm content={portfolio.url} />
