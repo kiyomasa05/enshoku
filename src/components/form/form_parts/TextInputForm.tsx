@@ -3,9 +3,10 @@ import React from "react";
 
 type TextInputFormProps = {
   content: FieldMetadata;
+  placeholder?: string;
 };
 
-const TextInputForm = ({ content }: TextInputFormProps) => {
+const TextInputForm = ({ content, placeholder }: TextInputFormProps) => {
   return (
     <div className="relative">
       <input
@@ -14,6 +15,7 @@ const TextInputForm = ({ content }: TextInputFormProps) => {
           type: "text",
         })}
         key={content.key}
+        {...(placeholder !== undefined ? { placeholder } : {})}
       />
       {content.errors && (
         <div

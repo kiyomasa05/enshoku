@@ -95,6 +95,7 @@ const SkillSetForm = ({ onNext }: Params) => {
   const infras = fields.infra.getFieldList();
   const others = fields.other.getFieldList();
 
+  // TODO 長いのでコンポーネントで共通化する
   return (
     <>
       <div className="mx-auto w-full">
@@ -138,15 +139,22 @@ const SkillSetForm = ({ onNext }: Params) => {
                       {lIndex + 1}
                     </TableCell>
                     <TableCell className="font-medium">
-                      <TextInputForm content={languageFields.kinds} />
+                      <TextInputForm
+                        content={languageFields.kinds}
+                        placeholder={"Java"}
+                      />
                     </TableCell>
                     <TableCell className="font-medium">
                       <TextInputForm
                         content={languageFields.yearsOfExperience}
+                        placeholder={"学習期間:4ヶ月 実務:1年半"}
                       />
                     </TableCell>
                     <TableCell className="font-medium">
-                      <TextInputForm content={languageFields.description} />
+                      <TextInputForm
+                        content={languageFields.description}
+                        placeholder={"基本的な記述は可能"}
+                      />
                     </TableCell>
                     <TableCell>
                       <Button
@@ -221,13 +229,22 @@ const SkillSetForm = ({ onNext }: Params) => {
                       {fIndex + 1}
                     </TableCell>
                     <TableCell className="font-medium">
-                      <TextInputForm content={FWFields.kinds} />
+                      <TextInputForm
+                        content={FWFields.kinds}
+                        placeholder="Ruby on Rails"
+                      />
                     </TableCell>
                     <TableCell className="font-medium">
-                      <TextInputForm content={FWFields.yearsOfExperience} />
+                      <TextInputForm
+                        content={FWFields.yearsOfExperience}
+                        placeholder="学習期間:4ヶ月 実務:1年半"
+                      />
                     </TableCell>
                     <TableCell className="font-medium">
-                      <TextInputForm content={FWFields.description} />
+                      <TextInputForm
+                        content={FWFields.description}
+                        placeholder="調べながらであれば読み書き可能"
+                      />
                     </TableCell>
                     <TableCell>
                       <Button
@@ -300,13 +317,22 @@ const SkillSetForm = ({ onNext }: Params) => {
                       {iIndex + 1}
                     </TableCell>
                     <TableCell className="font-medium">
-                      <TextInputForm content={infraFields.kinds} />
+                      <TextInputForm
+                        content={infraFields.kinds}
+                        placeholder="AWS"
+                      />
                     </TableCell>
                     <TableCell className="font-medium">
-                      <TextInputForm content={infraFields.yearsOfExperience} />
+                      <TextInputForm
+                        content={infraFields.yearsOfExperience}
+                        placeholder="1年"
+                      />
                     </TableCell>
                     <TableCell className="font-medium">
-                      <TextInputForm content={infraFields.description} />
+                      <TextInputForm
+                        content={infraFields.description}
+                        placeholder="EC2,ECS,S3等使用頻度の高いものは理解"
+                      />
                     </TableCell>
                     <TableCell>
                       <Button
@@ -379,13 +405,22 @@ const SkillSetForm = ({ onNext }: Params) => {
                       {oIndex + 1}
                     </TableCell>
                     <TableCell className="font-medium">
-                      <TextInputForm content={otherFields.kinds} />
+                      <TextInputForm
+                        content={otherFields.kinds}
+                        placeholder="git"
+                      />
                     </TableCell>
                     <TableCell className="font-medium">
-                      <TextInputForm content={otherFields.yearsOfExperience} />
+                      <TextInputForm
+                        content={otherFields.yearsOfExperience}
+                        placeholder="1年"
+                      />
                     </TableCell>
                     <TableCell className="font-medium">
-                      <TextInputForm content={otherFields.description} />
+                      <TextInputForm
+                        content={otherFields.description}
+                        placeholder="基本的な操作は可能"
+                      />
                     </TableCell>
                     <TableCell>
                       <Button

@@ -109,6 +109,7 @@ const ResumeForm = ({ onNext }: Params) => {
           className="rounded-md p-1 border-sky-400 border-solid border w-full h-24"
           {...getTextareaProps(fields.summary)}
           key={fields.summary.key}
+          placeholder={`新卒でxxxxxxxxxへ入社。3年代理店営業を行い、電子契約のシステム開発を会社役員に進言し、5年ほどシステム開発の上流工程を経験。\n直近1年でフルスタックエンジニアとして、Webアプリ開発（フロント・バックエンド）、インフラ運用等業務を経験`}
         ></textarea>
         <p id={fields.summary.errorId} className="text-rose-500">
           {fields.summary.errors}
@@ -140,6 +141,7 @@ const ResumeForm = ({ onNext }: Params) => {
                           type: "text",
                         })}
                         key={experienceFields.companyName.key}
+                        placeholder={"xxxx株式会社"}
                         /* memo:keyはgetInputPropsで直接渡すとエラーになる
                         React keys must be passed directly to JSX without using spread:
                         keyを別で渡すことで解決するhttps://qiita.com/masakinihirota/items/007e46d32da5a6b408b2
@@ -167,6 +169,7 @@ const ResumeForm = ({ onNext }: Params) => {
                         className="rounded-md p-1 border-sky-400 border-solid border w-80"
                         {...getTextareaProps(experienceFields.companyOverview)}
                         key={experienceFields.companyOverview.key}
+                        placeholder={"SI事業・SES事業 従業員数:約xx名"}
                       />
                       <p
                         id={experienceFields.companyOverview.errorId}
@@ -327,6 +330,9 @@ const ResumeForm = ({ onNext }: Params) => {
                                 )}
                                 className="border-sky-400 border-solid border block rounded-md w-80 p-1 resize-none mb-1"
                                 key={projectFields.projectOverview.key}
+                                placeholder={
+                                  "自社サービスxxxxxxのシステム改修、運用"
+                                }
                               />
                               <p
                                 id={projectFields.projectOverview.errorId}
@@ -349,6 +355,7 @@ const ResumeForm = ({ onNext }: Params) => {
                                 )}
                                 key={projectFields.inChargeProcess.key}
                                 className="border-sky-400 border-solid border block rounded-md w-80 p-1  mb-1"
+                                placeholder={"設計、実装、ITa"}
                               />
                               <p
                                 id={projectFields.inChargeProcess.errorId}
@@ -384,6 +391,7 @@ const ResumeForm = ({ onNext }: Params) => {
                                           })}
                                           key={content.key}
                                           className="border-sky-400 border-solid border block rounded-md w-80 p-1 mb-1"
+                                          placeholder={"テスト仕様書の作成"}
                                         />
                                         <p
                                           id={content.errorId}
@@ -434,6 +442,9 @@ const ResumeForm = ({ onNext }: Params) => {
                                             {...getTextareaProps(achievement)}
                                             key={achievement.key}
                                             className="border-sky-400 border-solid border block rounded-md w-80 p-1 mb-1 text-xs"
+                                            placeholder={
+                                              "システム概要などをPPTにまとめ、疑問点をメンバーに確認し、早期キャッチアップを目指した"
+                                            }
                                           />
                                           <p
                                             id={achievement.errorId}
@@ -486,6 +497,7 @@ const ResumeForm = ({ onNext }: Params) => {
                                               })}
                                               key={category.key}
                                               className="border-sky-400 border-solid border block rounded-md w-40 p-1 mb-1"
+                                              placeholder="インフラ/言語etc..."
                                             />
                                             <p
                                               id={category.errorId}
@@ -520,6 +532,7 @@ const ResumeForm = ({ onNext }: Params) => {
                                                     })}
                                                     key={item.key}
                                                     className="border-sky-400 border-solid border block rounded-md w-40 p-1 mb-1"
+                                                    placeholder="AWS/TypeScript etc..."
                                                   />
                                                   <p
                                                     id={item.errorId}
@@ -611,6 +624,7 @@ const ResumeForm = ({ onNext }: Params) => {
                                 })}
                                 key={scaleField.role.key}
                                 className="border-sky-400 border-solid border rounded-md w-40 p-1 mb-1"
+                                placeholder="エンジニア/PM etc.."
                               />
 
                               <p
