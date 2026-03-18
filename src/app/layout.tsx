@@ -7,6 +7,7 @@ import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 import GoogleAdsense from "@/components/other/GoogleAdSense";
 import { GoogleAdAdSenseButtomAd } from "@/components/other/GoogleAdSenseButtomAd";
+import { ReactNode } from "react";
 
 // https://zenn.dev/takna/articles/next-tailwind-googlefonts-basic
 const notoSansJP = Noto_Sans_JP({
@@ -30,7 +31,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="ja" className={`${notoSansJP.variable}`}>
